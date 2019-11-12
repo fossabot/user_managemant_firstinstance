@@ -1,13 +1,15 @@
-package com.Looyas.demo.security.jwt;
+package com.looyas.demo.security.jwt;
 
-import com.Looyas.demo.services.impl.UserPrinciple;
+import com.looyas.demo.services.impl.UserPrinciple;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+
 import java.util.Date;
+
 // this class will allow to:
 // generate a JWT token
 //valiate a JWT token
@@ -45,9 +47,9 @@ public class JwtProvider {
         try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
             return true;
-        }  catch (SignatureException e) {
+        } catch (SignatureException e) {
             logger.error("Invalid JWT signature -> Message: {} ", e);
-        }catch (MalformedJwtException e) {
+        } catch (MalformedJwtException e) {
             logger.error("Invalid JWT token -> Message: {}", e);
         } catch (ExpiredJwtException e) {
             logger.error("Expired JWT token -> Message: {}", e);

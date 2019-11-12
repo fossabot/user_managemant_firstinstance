@@ -1,8 +1,9 @@
-package com.Looyas.demo.models;
+package com.looyas.demo.models;
 
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+
 @Entity
 @Table(name = "roles")
 public class Role {

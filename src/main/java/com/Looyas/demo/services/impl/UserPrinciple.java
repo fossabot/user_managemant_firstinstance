@@ -1,18 +1,20 @@
-package com.Looyas.demo.services.impl;
-import com.Looyas.demo.models.User;
+package com.looyas.demo.services.impl;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.looyas.demo.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import java.util.Objects;
+
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 //UserPrinciple will implement UserDetails.
 //UserPrinciple is not used directly by Spring Security for security purposes.
 //It simply stores user information which is later encapsulated into Authentication objects. This allows non-security related user information (such as email addresses, telephone numbers etc) to be stored.
-public class UserPrinciple implements UserDetails{
+public class UserPrinciple implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
@@ -36,6 +38,8 @@ public class UserPrinciple implements UserDetails{
         this.authorities = authorities;
     }
 
+
+
     public static UserPrinciple build(User user) {
         List<GrantedAuthority> authorities = user.getRoles().stream().map(role ->
                 new SimpleGrantedAuthority(role.getName().name())
@@ -51,6 +55,7 @@ public class UserPrinciple implements UserDetails{
                 authorities
         );
     }
+
     public String getUserId() {
         return userId;
     }
@@ -111,4 +116,33 @@ public class UserPrinciple implements UserDetails{
         UserPrinciple user = (UserPrinciple) o;
         return Objects.equals(userId, user.userId);
     }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
 }
+
