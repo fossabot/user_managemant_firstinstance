@@ -1,4 +1,4 @@
-package com.Looyas.demo.models;
+package com.looyas.demo.models;
 
 public enum RoleName {
     ROLE_USER,

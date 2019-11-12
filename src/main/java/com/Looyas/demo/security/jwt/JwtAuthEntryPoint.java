@@ -1,4 +1,4 @@
-package com.Looyas.demo.security.jwt;
+package com.looyas.demo.security.jwt;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
 //JwtAuthEntryPoint is used to handle Error exception when having unauthorized requests.
 @Component
 public class JwtAuthEntryPoint implements AuthenticationEntryPoint {

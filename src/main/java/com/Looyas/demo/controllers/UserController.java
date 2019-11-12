@@ -1,9 +1,8 @@
-package com.Looyas.demo.controllers;
+package com.looyas.demo.controllers;
 
-import com.Looyas.demo.exceptions.ResourceNotFoundException;
-import com.Looyas.demo.models.User;
-import com.Looyas.demo.repositories.UserRepository;
-import com.Looyas.demo.services.UserService;
+import com.looyas.demo.models.User;
+import com.looyas.demo.services.UserService;
+import com.looyas.demo.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,10 +17,9 @@ import java.util.Optional;
 @RequestMapping("/user")
 public class UserController {
 
-    AuthenticationManager authenticationManager;
-
     @Autowired
     private final UserService userService;
+    AuthenticationManager authenticationManager;
 
     public UserController(UserService userService) {
         this.userService = userService;

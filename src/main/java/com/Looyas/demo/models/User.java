@@ -1,8 +1,6 @@
-package com.Looyas.demo.models;
+package com.looyas.demo.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -24,8 +22,8 @@ public class User {
 
     @Id
     @Column(name = "userId")
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String userId;
     @Column(name = "username")
     private String username;
@@ -61,7 +59,8 @@ public class User {
         this.email = email;
 
     }
-    public User( String username, String firstName, String lastName, String password, @Email String email) {
+
+    public User(String username, String firstName, String lastName, String password, @Email String email) {
 
         this.username = username;
         this.firstName = firstName;
@@ -70,6 +69,7 @@ public class User {
         this.email = email;
 
     }
+
     public String getUserId() {
         return userId;
     }

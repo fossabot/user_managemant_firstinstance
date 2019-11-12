@@ -1,4 +1,6 @@
-package com.Looyas.demo.messages.requests;
+package com.looyas.demo.messages.requests;
+
+import org.springframework.http.ResponseEntity;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
