@@ -51,9 +51,6 @@ public class UserControllerTest {
     @Autowired
     private  UserController userController;
     @Test
-
-
-
     public void whenfindALL_thenReturnUSERS ()  {
         User user = new User("gjlh","opjù","lkjmkj","ioujiou","uihuihoklj");
         userRepository.save(user);
