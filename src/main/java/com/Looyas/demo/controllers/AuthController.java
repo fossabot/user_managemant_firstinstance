@@ -51,7 +51,9 @@ public class AuthController {
         String jwt = jwtProvider.generateJwtToken(authentication);
         return ResponseEntity.ok(new JwtResponse(jwt));
     }
-
+//    public User createUser(@Valid @RequestBody User user) {
+//        return userRepository.save(user);
+//    }
 
     @PostMapping("/signup")
 

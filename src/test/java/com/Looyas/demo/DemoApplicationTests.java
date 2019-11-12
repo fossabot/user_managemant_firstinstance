@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 //It enables full support of spring context loading and dependency injection of the beans in the tests.
 @SpringBootTest // annotation that can be specified on a test class that runs Spring Boot based tests.
 // It provides ability to start a fully running web server listening on any defined or random port.
-@TestPropertySource(locations = "classpath:application.properties")
+@TestPropertySource(locations = "classpath:application-test.properties")
 public class DemoApplicationTests {
 
     @Test

@@ -1,63 +1,53 @@
 package com.looyas.demo.unitTest.UserTest;
 import com.looyas.demo.controllers.UserController;
 import com.looyas.demo.models.User;
-import com.looyas.demo.repositories.RoleRepository;
 import com.looyas.demo.repositories.UserRepository;
-import com.looyas.demo.security.jwt.JwtProvider;
-import org.junit.Assert;
+import com.looyas.demo.services.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
-
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
-
 import java.util.ArrayList;
 import java.util.List;
-
+import static com.looyas.demo.constants.Paths.USER;
 import static org.mockito.Mockito.when;
-import static org.springframework.security.test.web.reactive.server.SecurityMockServerConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-//@RunWith(SpringRunner.class) //is used to provide a bridge between Spring Boot test features and JUnit
-//@WebMvcTest(UserController.class)
-@AutoConfigureMockMvc
-public class UserControllerTest {
-    @Autowired
-    private MockMvc mvc;
-//    @Autowired
-//    protected WebApplicationContext wac;
-    @Autowired
-    AuthenticationManager authenticationManager;
-    @Autowired
-    RoleRepository roleRepository;
-    @Autowired
-    PasswordEncoder encoder;
-    @Autowired
-    JwtProvider jwtProvider;
-    @MockBean
-    private UserRepository userRepository;
-    @Autowired
-    private  UserController userController;
-    @Test
-    public void whenfindALL_thenReturnUSERS ()  {
-        User user = new User("gjlh","opjù","lkjmkj","ioujiou","uihuihoklj");
-        userRepository.save(user);
-        List<User> users = new ArrayList<User>();
-        users.add(user);
-        when(userController.findAllUser()).thenReturn((ResponseEntity<Iterable<User>>) users);
-        Assert.assertEquals("users", users);
-    }
 
+public class UserControllerTest {
+    private MockMvc mvc;
+    @Autowired
+    private UserRepository userRepository;
+    @InjectMocks
+    private UserController userController;
+    @Mock
+    private UserService userService;
+    @Before
+    public void setup() {
+        mvc = MockMvcBuilders.standaloneSetup(userController).build();
+    }
+    @Test
+    public void whenfindALL_thenReturnUSERS() throws Exception {
+        List<User> users = new ArrayList<User>();
+        User user = new User("gjlh", "opjù", "lkjmkj", "ioujiou", "uihuihoklj");
+        users.add(user);
+        when(userService.findAll()).thenReturn(users);
+        mvc.perform(get(USER))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
+        Mockito.verify(userService).findAll();
+    }
 }

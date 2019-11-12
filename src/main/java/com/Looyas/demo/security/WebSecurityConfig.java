@@ -53,6 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     //    The configure(HttpSecurity) method defines which URL paths should be secured and which should not.
     @Override
     protected void configure(HttpSecurity http) throws Exception {

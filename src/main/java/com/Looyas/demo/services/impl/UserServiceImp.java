@@ -4,7 +4,6 @@ import com.looyas.demo.models.User;
 import com.looyas.demo.repositories.UserRepository;
 import com.looyas.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,11 +13,13 @@ import java.util.Optional;
 @Service
 public class UserServiceImp implements UserService {
     @Autowired
-    public final UserRepository userRepository;
+   private UserRepository userRepository;
 
     public UserServiceImp(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
+
 
     @Override
     public Iterable<User> findAll() {
@@ -41,10 +42,9 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public ResponseEntity<Iterable<User>> addUser(User user) {
+    public void addUser(User user) {
         List<User> userList = new ArrayList<User>();
         userList.add(user);
-        return null;
     }
 
 
