@@ -1,7 +1,6 @@
 package com.looyas.demo.services;
 
 import com.looyas.demo.models.User;
-import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
