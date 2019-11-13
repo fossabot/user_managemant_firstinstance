@@ -32,7 +32,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User save(User user) {
+    public User add(User user) {
         return userRepository.save(user);
     }
 
@@ -41,11 +41,11 @@ public class UserServiceImp implements UserService {
         userRepository.deleteById(userId);
     }
 
-    @Override
-    public void addUser(User user) {
-        List<User> userList = new ArrayList<User>();
-        userList.add(user);
-    }
+//    @Override
+//    public void addUser(User user) {
+//        List<User> userList = new ArrayList<User>();
+//        userList.add(user);
+//    }
 
 
 }
