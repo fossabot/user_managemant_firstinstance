@@ -21,32 +21,31 @@ public class UserController {
 
     public UserController(UserService userService) {
         this.userService = userService;
-
     }
 
     //get all users
     @GetMapping("/getUsers")
-    public Iterable<User> findAllUser() {
+    public Iterable<User> getAllUsers() {
         return(userService.findAll());
     }
 
-    @PostMapping("/saveUser")
-    public ResponseEntity create(@Valid @RequestBody User user) {
-        return ResponseEntity.ok(userService.save(user));
-    }
-
-
+    //getUserById
     @GetMapping("/getUser/{userId}")
-
-    public Optional<User> findById(@PathVariable String userId)  {
+    public Optional<User> getUserByID(@PathVariable String userId)  {
         return   (userService.findById(userId));
 
     }
+    //add user
+    @PostMapping("/addUser")
+    public User addUser( @RequestBody User user) {
+        return (  userService.add(user));
+    }
+
 
     @PutMapping("/update/{userId}")
     public ResponseEntity<User> update(@PathVariable("userId") String userId, @Valid User user,
                                        BindingResult result) throws ResourceNotFoundException {
-        return ResponseEntity.ok(userService.save(user));
+        return ResponseEntity.ok(userService.add(user));
     }
 
     @DeleteMapping("/delete/{userId}")
