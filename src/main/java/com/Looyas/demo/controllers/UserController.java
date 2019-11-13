@@ -5,7 +5,6 @@ import com.looyas.demo.services.UserService;
 import com.looyas.demo.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +18,6 @@ public class UserController {
 
     @Autowired
     private final UserService userService;
-    AuthenticationManager authenticationManager;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -40,9 +38,9 @@ public class UserController {
 
     @GetMapping("/getUser/{userId}")
 
-    public ResponseEntity<User> findById(@PathVariable String userId) throws ResourceNotFoundException {
-        Optional<User> user = userService.findById(userId);
-        return ResponseEntity.ok(user.get());
+    public Optional<User> findById(@PathVariable String userId)  {
+        return   (userService.findById(userId));
+
     }
 
     @PutMapping("/update/{userId}")
