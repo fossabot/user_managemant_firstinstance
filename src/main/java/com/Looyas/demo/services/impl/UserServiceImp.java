@@ -11,12 +11,11 @@ import java.util.Optional;
 @Service
 public class UserServiceImp implements UserService {
     @Autowired
-   private UserRepository userRepository;
+    private UserRepository userRepository;
 
     public UserServiceImp(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
 
 
     @Override

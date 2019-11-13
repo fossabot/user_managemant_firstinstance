@@ -1,8 +1,8 @@
 package com.looyas.demo.controllers;
 
+import com.looyas.demo.exceptions.ResourceNotFoundException;
 import com.looyas.demo.models.User;
 import com.looyas.demo.services.UserService;
-import com.looyas.demo.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -26,19 +26,20 @@ public class UserController {
     //get all users
     @GetMapping("/getUsers")
     public Iterable<User> getAllUsers() {
-        return(userService.findAll());
+        return (userService.findAll());
     }
 
     //getUserById
     @GetMapping("/getUser/{userId}")
-    public Optional<User> getUserByID(@PathVariable String userId)  {
-        return   (userService.findById(userId));
+    public Optional<User> getUserByID(@PathVariable String userId) {
+        return (userService.findById(userId));
 
     }
+
     //add user
     @PostMapping("/addUser")
-    public User addUser( @RequestBody User user) {
-        return (  userService.add(user));
+    public User addUser(@RequestBody User user) {
+        return (userService.add(user));
     }
 
 

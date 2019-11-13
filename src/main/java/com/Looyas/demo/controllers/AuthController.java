@@ -1,4 +1,5 @@
 package com.looyas.demo.controllers;
+
 import com.looyas.demo.messages.requests.LoginForm;
 import com.looyas.demo.messages.requests.SignUpForm;
 import com.looyas.demo.messages.responses.JwtResponse;
@@ -17,6 +18,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Set;
@@ -72,7 +74,7 @@ public class AuthController {
         User user = new User(signUpRequest.getUsername(), signUpRequest.getFirstName(), signUpRequest.getLastName(),
                 encoder.encode(signUpRequest.getPassword()), signUpRequest.getEmail());
 
-              Set<String> strRoles = signUpRequest.getRole();
+        Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
 
         strRoles.forEach(role -> {

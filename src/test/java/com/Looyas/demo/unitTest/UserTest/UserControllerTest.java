@@ -1,10 +1,7 @@
 package com.looyas.demo.unitTest.UserTest;
 
 import com.looyas.demo.controllers.UserController;
-import com.looyas.demo.models.Role;
-import com.looyas.demo.models.RoleName;
 import com.looyas.demo.models.User;
-import com.looyas.demo.repositories.RoleRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +16,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.looyas.demo.constants.Paths.*;
+import static com.looyas.demo.constants.Paths.GETUSER;
+import static com.looyas.demo.constants.Paths.GETUSERBYID;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;

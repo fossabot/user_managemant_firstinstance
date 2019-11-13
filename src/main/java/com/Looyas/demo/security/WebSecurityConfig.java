@@ -1,8 +1,8 @@
 package com.looyas.demo.security;
 
-import com.looyas.demo.services.impl.UserDetailsServiceImpl;
 import com.looyas.demo.security.jwt.JwtAuthEntryPoint;
 import com.looyas.demo.security.jwt.JwtAuthTokenFilter;
+import com.looyas.demo.services.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
