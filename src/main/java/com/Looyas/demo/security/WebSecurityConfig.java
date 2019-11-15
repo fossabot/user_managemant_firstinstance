@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        Specifically, the "/" and "/auth" paths are configured to not require any authentication. All other paths must be authenticated.
         http.cors().and().csrf().disable().
                 authorizeRequests()
-                .antMatchers("/user/**", "/auth/**").permitAll()
+                .antMatchers( "/","/auth/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()

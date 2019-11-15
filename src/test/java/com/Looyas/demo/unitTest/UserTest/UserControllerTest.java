@@ -2,9 +2,12 @@ package com.looyas.demo.unitTest.UserTest;
 
 import com.looyas.demo.controllers.UserController;
 import com.looyas.demo.models.User;
+import com.looyas.demo.services.UserService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,6 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerTest {
 
     private MockMvc mvc;
+
 
     @Mock
     private UserController userController;
@@ -68,24 +72,13 @@ public class UserControllerTest {
     }
 
     ///addUser test
-//    @Test
-//    public void whenAddUser_thenReturnUser() throws Exception {
-//
-//        String json = "{\r\n" +
-//                "	\"username\": \"opjù\",\r\n" +
-//                "	\"firstName\": \"opjù\",\r\n" +
-//                "	\"lastName\":  \"ioujiou\"\r\n" +
-//                "	\"password\": \"ioujiou\"\r\n" +
-//                "	\"email\": \"noumhhhdhhiiiihi@looyas.com\"\r\n" +
-//                "}";
-//        User user = new User( "opjù", "opjù", "ioujiou", "ioujiou","noumhhhdhhiiiihi@looyas.com");
-//        when(userController.addUser(user)).thenReturn(user);
-//        mvc.perform(post(ADDUSER )
-//                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
-//                .content(json))
-//                   .andExpect(status().isOk())
-//                    .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-//                    .andExpect(jsonPath("$.username", is("opjù")));
-//        Mockito.verify(userController).addUser(user);
-//    }
+    @Test
+    public void whenAddUser_thenReturnUser() throws Exception {
+
+        User user = new User( "opjù", "opjù", "ioujiou", "ioujiou","noumhhhdhhiiiihi@looyas.com");
+        when(userController.addUser(user)).thenReturn(user);
+        User result = userController.addUser(user);
+        Assert.assertEquals(user,result);
+        Mockito.verify(userController).addUser(user);
+    }
 }
