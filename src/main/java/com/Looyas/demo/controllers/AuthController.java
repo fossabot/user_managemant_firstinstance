@@ -58,7 +58,7 @@ public class AuthController {
 //        return userRepository.save(user);
 //    }
 
-    @PostMapping("/signUp")
+    @PostMapping("/signup")
 
     public ResponseEntity<String> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
