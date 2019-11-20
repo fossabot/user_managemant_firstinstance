@@ -119,8 +119,8 @@
     </build>
 <repositories>
 	<repository>
-			<id>SPRING-BOOT-PROJECT-SNAP</id>
-			<name>your custom repo</name>
+			<id>SPRING-BOOT-LOOYAS-REP</id>
+			<name>LOOYAS REPOSITORY</name>
 			<url>http://192.168.10.193:8091/repository/Looyas_repository/</url>
 		</repository>
 	</repositories>
