@@ -129,5 +129,5 @@
 <name>looyas-project-repo-snap</name>
 <url>http://192.168.10.193:8091/repository/looyas-project-repo-snap/</url>
 </snapshotRepository> 
-	
+	</distributionManagement>
 </project>
