@@ -24,6 +24,13 @@
     </properties>
 
     <dependencies>
+	    <!-- https://mvnrepository.com/artifact/sp.sd/nexus-artifact-uploader -->
+   <dependency>
+         <groupId>sp.sd</groupId>
+         <artifactId>nexus-artifact-uploader</artifactId>
+         <version>2.9</version>
+   </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -114,13 +121,31 @@
 			</execution>
 		</executions>
 	</plugin>
+		<plugin>
+   <artifactId>maven-deploy-plugin</artifactId>
+   <version>2.8.1</version>
+   <executions>
+      <execution>
+         <id>default-deploy</id>
+         <phase>deploy</phase>
+         <goals>
+            <goal>deploy</goal>
+         </goals>
+      </execution>
+   </executions>
+</plugin>
         </plugins>
     </build>
-<repositories>
-	<repository>
-			<id>SPRING-BOOT-LOOYAS-REP</id>
-			<name>LOOYAS REPOSITORY</name>
-			<url>http://192.168.10.193:8091/repository/Looyas_repository/</url>
-		</repository>
-	</repositories>
+<distributionManagement>
+<repository>
+<id>nexus</id>
+<name>looyas-project-repo-rel</name>
+<url>http://192.168.10.193:8091/repository/looyas-project-repo-rel/</url>
+</repository>
+<snapshotRepository>
+<id>nexus</id>
+<name>looyas-project-repo-snap</name>
+<url>http://192.168.10.193:8091/repository/looyas-project-repo-snap/</url>
+</snapshotRepository>
+</distributionManagement>
 </project>
