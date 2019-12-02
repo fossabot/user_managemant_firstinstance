@@ -1,16 +1,15 @@
 package com.looyas.demo.unitTest.UserTest;
 
 import com.looyas.demo.controllers.UserController;
-import com.looyas.demo.models.Role;
-import com.looyas.demo.models.RoleName;
 import com.looyas.demo.models.User;
-import com.looyas.demo.repositories.RoleRepository;
+import com.looyas.demo.services.UserService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -18,16 +17,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import static com.looyas.demo.constants.Paths.*;
+import static com.looyas.demo.constants.Paths.GETUSER;
+import static com.looyas.demo.constants.Paths.GETUSERBYID;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -36,6 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerTest {
 
     private MockMvc mvc;
+
 
     @Mock
     private UserController userController;
@@ -74,24 +72,13 @@ public class UserControllerTest {
     }
 
     ///addUser test
-//    @Test
-//    public void whenAddUser_thenReturnUser() throws Exception {
-//
-//        String json = "{\r\n" +
-//                "	\"username\": \"opjù\",\r\n" +
-//                "	\"firstName\": \"opjù\",\r\n" +
-//                "	\"lastName\":  \"ioujiou\"\r\n" +
-//                "	\"password\": \"ioujiou\"\r\n" +
-//                "	\"email\": \"noumhhhdhhiiiihi@looyas.com\"\r\n" +
-//                "}";
-//        User user = new User( "opjù", "opjù", "ioujiou", "ioujiou","noumhhhdhhiiiihi@looyas.com");
-//        when(userController.addUser(user)).thenReturn(user);
-//        mvc.perform(post(ADDUSER )
-//                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
-//                .content(json))
-//                   .andExpect(status().isOk())
-//                    .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-//                    .andExpect(jsonPath("$.username", is("opjù")));
-//        Mockito.verify(userController).addUser(user);
-//    }
+    @Test
+    public void whenAddUser_thenReturnUser() throws Exception {
+
+        User user = new User( "opjù", "opjù", "ioujiou", "ioujiou","noumhhhdhhiiiihi@looyas.com");
+        when(userController.addUser(user)).thenReturn(user);
+        User result = userController.addUser(user);
+        Assert.assertEquals(user,result);
+        Mockito.verify(userController).addUser(user);
+    }
 }
