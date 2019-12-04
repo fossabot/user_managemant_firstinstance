@@ -39,7 +39,7 @@ public class AuthController {
     private UserRepository userRepository;
 
     @PostMapping("/signin")
-    public String authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -49,14 +49,11 @@ public class AuthController {
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         String jwt = jwtProvider.generateJwtToken(authentication);
         JwtResponse jwtResponse = new JwtResponse(jwt);
-        return  jwt;
+        return  ResponseEntity.ok(jwtResponse);
     }
-//    public User createUser(@Valid @RequestBody User user) {
-//        return userRepository.save(user);
-//    }
+
 
     @PostMapping("/signup")
 

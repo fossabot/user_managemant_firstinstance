@@ -24,7 +24,6 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 public class UserServiceTest {
     private MockMvc mvc;
-
     @Autowired
     private UserService userService;
     @Autowired
