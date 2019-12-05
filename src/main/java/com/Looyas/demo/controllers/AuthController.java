@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -47,10 +48,11 @@ public class AuthController {
                         loginRequest.getPassword()
                 )
         );
-
+        User user =  userRepository.findByUsername(loginRequest.getUsername()).get();
+        Set<Role> roles = user.getRoles();
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtProvider.generateJwtToken(authentication);
-        JwtResponse jwtResponse = new JwtResponse(jwt);
+        JwtResponse jwtResponse = new JwtResponse(jwt,loginRequest.getUsername(),roles);
         return  ResponseEntity.ok(jwtResponse);
     }
 
