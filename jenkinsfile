@@ -164,6 +164,15 @@ pipeline {
         }
         
     }
+    post {
+        always {
+             
+         emailext( to: 'adam.issaoui@looyas.com',
+             subject: "Jenkins : Failed Pipeline: ${currentBuild.fullDisplayName}",
+             body: '''${SCRIPT, template="managed:Groovy-Email-Template"}''' )
+    
+        }
+    }
 }
        
 
