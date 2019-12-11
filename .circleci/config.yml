@@ -56,6 +56,7 @@ jobs:
 
       - store_test_results:
           path: target/surefire-reports
+
   integration test on windows:
 
     working_directory: ~/user_managemant_firstinstance
@@ -71,6 +72,18 @@ jobs:
 
       - store_test_results:
           path: target/surefire-reports
+  code review:
+
+    working_directory: ~/user_managemant_firstinstance
+
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
+      - image: sonarqube
+
+    steps:
+      - checkout
+
+      - run: mvn  sonar:sonar
 
 workflows:
   version: 2
@@ -86,4 +99,9 @@ workflows:
       - integration test on windows:
           requires:
             - build
+      - code review:
+          requires:
+            - Unit-Test
+            - integration test on unix like
+            - integration test on windows
 
