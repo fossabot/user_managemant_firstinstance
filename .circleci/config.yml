@@ -1,5 +1,6 @@
 version: 2
 jobs:
+
   build:
 
     working_directory: ~/user_managemant_firstinstance
@@ -39,6 +40,37 @@ jobs:
 
       - store_test_results:
            path: target/surefire-reports
+
+  integration test on unix like:
+
+    working_directory: ~/user_managemant_firstinstance
+
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
+      - image: ubuntu:latest
+
+    steps:
+      - checkout
+
+      - run: mvn  verify -Dunit-tests.skip=true
+
+      - store_test_results:
+          path: target/surefire-reports
+  integration test on windows:
+
+    working_directory: ~/user_managemant_firstinstance
+
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
+      - image: mcr.microsoft.com/windows
+
+    steps:
+      - checkout
+
+      - run: mvn  verify -Dunit-tests.skip=true
+
+      - store_test_results:
+          path: target/surefire-reports
 
 workflows:
   version: 2
