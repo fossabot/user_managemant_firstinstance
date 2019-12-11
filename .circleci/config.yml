@@ -7,7 +7,6 @@ jobs:
     docker:
       - image: circleci/openjdk:8-jdk-stretch
 
-
     steps:
 
       - checkout
@@ -22,10 +21,17 @@ jobs:
             - ~/.m2
           key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
 
-      - run: mvn clean package
+      - run: mvn clean package -Dunit-tests.skip=true
 
       - store_test_results:
           path: target/surefire-reports
 
       - store_artifacts:
           path: target/demo-0.0.1-SNAPSHOT.jar
+
+  Test:
+    steps:
+      -Unit test:
+       -run : mvn test
+
+
