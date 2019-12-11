@@ -29,7 +29,9 @@ jobs:
     machine:
       image: ubuntu-1604:201903-01
     steps:
+
        - run : mvn test
+
        - store_test_results:
          path: target/surefire-reports
 
