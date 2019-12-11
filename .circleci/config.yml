@@ -57,21 +57,6 @@ jobs:
       - store_test_results:
           path: target/surefire-reports
 
-  integration test on windows:
-
-    working_directory: ~/user_managemant_firstinstance
-
-    docker:
-      - image: circleci/openjdk:8-jdk-stretch
-      - image: windows
-
-    steps:
-      - checkout
-
-      - run: mvn  verify -Dunit-tests.skip=true
-
-      - store_test_results:
-          path: target/surefire-reports
   code review:
 
     working_directory: ~/user_managemant_firstinstance
@@ -96,12 +81,9 @@ workflows:
       - integration test on unix like:
           requires:
             - build
-      - integration test on windows:
-          requires:
-            - build
       - code review:
           requires:
             - Unit-Test
             - integration test on unix like
-            - integration test on windows
+
 
