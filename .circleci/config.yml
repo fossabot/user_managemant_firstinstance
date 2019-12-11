@@ -33,7 +33,7 @@ jobs:
       - image: circleci/openjdk:8-jdk-stretch
 
     steps:
-     # - checkout
+      - checkout
       - attach_workspace:
             at: /home/circleci/user_managemant_firstinstance
 
