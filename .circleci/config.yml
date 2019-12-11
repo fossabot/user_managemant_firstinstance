@@ -22,16 +22,14 @@ jobs:
           key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
 
       - run: mvn clean package -Dunit-tests.skip=true
-
-      - store_test_results:
-          path: target/surefire-reports
-
       - store_artifacts:
           path: target/demo-0.0.1-SNAPSHOT.jar
 
-  Test:
+  Unit Test:
     steps:
-      -Unit test:
-       -run : mvn test
+       - run : mvn test
+       - store_test_results:
+         path: target/surefire-reports
+
 
 
