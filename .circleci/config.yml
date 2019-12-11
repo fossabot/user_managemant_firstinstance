@@ -26,7 +26,7 @@ jobs:
           path: target/demo-0.0.1-SNAPSHOT.jar
 
   Unit-Test:
-    working_directory: ~/user_managemant_firstinstance
+    working_directory: ~/user_managemant_firstinstance/src/test
     docker:
       - image: circleci/openjdk:8-jdk-stretch
     steps:
