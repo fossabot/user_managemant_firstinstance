@@ -34,13 +34,15 @@ jobs:
 
     steps:
      # - checkout
+      - attach_workspace:
+            at: /home/circleci/user_managemant_firstinstance
 
      # - restore_cache:
          #key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
-      - save_cache:
-          paths:
-             - /home/circleci/.m2
-          key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
+     # - save_cache:
+     #    paths:
+      #       - /home/circleci/.m2
+      #    key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
 
       - run: mvn test
 
