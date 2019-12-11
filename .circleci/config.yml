@@ -28,10 +28,15 @@ jobs:
   Unit-Test:
     orbs:
       maven: circleci/maven@1.0.0
+
     working_directory: ~/user_managemant_firstinstance
     docker:
       - image: circleci/openjdk:8-jdk-stretch
     steps:
+      - save_cache:
+            paths:
+              - ~/.m2
+            key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
 
        - run : mvn test
 
