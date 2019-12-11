@@ -26,12 +26,12 @@ jobs:
           path: target/demo-0.0.1-SNAPSHOT.jar
 
   Unit-Test:
-    orbs:
-      maven: circleci/maven@1.0.0
 
     working_directory: ~/user_managemant_firstinstance
+
     docker:
       - image: circleci/openjdk:8-jdk-stretch
+
     steps:
       - restore_cache:
           key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
