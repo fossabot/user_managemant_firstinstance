@@ -34,7 +34,7 @@ jobs:
     steps:
 
        - run : mvn test
-           key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
+
        - store_test_results:
            path: target/surefire-reports
 
