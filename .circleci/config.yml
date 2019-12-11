@@ -80,4 +80,10 @@ workflows:
       - Unit-Test:
           requires:
             - build
+      - integration test on unix like:
+          requires:
+            - build
+      - integration test on windows:
+          requires:
+            - build
 
