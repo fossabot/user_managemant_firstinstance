@@ -33,14 +33,15 @@ jobs:
     docker:
       - image: circleci/openjdk:8-jdk-stretch
     steps:
-       - save_cache:
-            paths:
-              - ~/.m2
-            key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
 
-       - run : mvn test
+      - save_cache:
+          paths:
+             - ~/.m2
+          key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
 
-       - store_test_results:
+      - run: mvn test
+
+      - store_test_results:
            path: target/surefire-reports
 
 workflows:
