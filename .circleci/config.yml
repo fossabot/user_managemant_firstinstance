@@ -33,6 +33,8 @@ jobs:
       - image: circleci/openjdk:8-jdk-stretch
 
     steps:
+      - checkout
+
       - restore_cache:
           key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
       - save_cache:
