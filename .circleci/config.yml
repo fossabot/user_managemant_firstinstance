@@ -27,8 +27,8 @@ jobs:
 
   Unit-Test:
     working_directory: ~/user_managemant_firstinstance
-    machine:
-      image: ubuntu-1604:201903-01
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
     steps:
 
        - run : mvn test
