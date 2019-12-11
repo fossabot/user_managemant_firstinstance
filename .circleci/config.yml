@@ -62,7 +62,7 @@ jobs:
 
     docker:
       - image: circleci/openjdk:8-jdk-stretch
-      - image: mcr.microsoft.com/windows
+      - image: windows
 
     steps:
       - checkout
