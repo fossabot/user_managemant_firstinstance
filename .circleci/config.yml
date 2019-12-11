@@ -26,6 +26,7 @@ jobs:
           path: target/demo-0.0.1-SNAPSHOT.jar
 
   Unit-Test:
+    working_directory: ~/user_managemant_firstinstance
     machine:
       image: ubuntu-1604:201903-01
     steps:
