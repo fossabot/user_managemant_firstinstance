@@ -28,13 +28,13 @@ jobs:
   Unit-Test:
     orbs:
       maven: circleci/maven@1.0.0
-    working_directory: ~/user_managemant_firstinstance/src/test
+    working_directory: ~/user_managemant_firstinstance
     docker:
       - image: circleci/openjdk:8-jdk-stretch
     steps:
 
        - run : mvn test
-
+           key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
        - store_test_results:
            path: target/surefire-reports
 
