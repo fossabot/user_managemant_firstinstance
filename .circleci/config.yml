@@ -73,8 +73,10 @@ jobs:
           command: mvn verify sonar:sonar
 
   deploy to test env:
+
     docker:
       - image: circleci/openjdk:8-jdk-stretch
+
     steps:
       - run:
           name: deploy test
@@ -97,7 +99,7 @@ workflows:
           requires:
             - Unit-Test
             - integration test on unix like
-      -deploy to test env:
+      - deploy to test env:
           requires:
             - code review
 
