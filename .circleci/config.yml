@@ -98,6 +98,6 @@ workflows:
             - Unit-Test
             - integration test on unix like
       -deploy to test env:
-        - requires:
+          requires:
             - code review
 
