@@ -72,6 +72,14 @@ jobs:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
 
+  deploy to test env:
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
+    steps:
+      - run:
+          name: deploy test
+          command: nohup  java -jar  home/circleci/user_managemant_firstinstance/target/demo-0.0.1-SNAPSHOT.jar
+
 
 workflows:
   version: 2
@@ -85,9 +93,11 @@ workflows:
           requires:
             - build
       - code review:
-          context: circleci
+          context: SonarCloud
           requires:
             - Unit-Test
             - integration test on unix like
-
+      -deploy to test env:
+        - requires:
+            - code review
 
