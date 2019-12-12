@@ -74,6 +74,8 @@ jobs:
 
   deploy to test env:
 
+    working_directory: ~/user_managemant_firstinstance
+
     docker:
       - image: circleci/openjdk:8-jdk-stretch
 
