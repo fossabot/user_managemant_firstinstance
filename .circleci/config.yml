@@ -1,0 +1,89 @@
+version: 2
+jobs:
+
+  build:
+
+    working_directory: ~/user_managemant_firstinstance
+
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
+
+    steps:
+
+      - checkout
+
+      - restore_cache:
+          key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
+
+      - run: mvn dependency:go-offline
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
+
+      - run: mvn clean package -Dunit-tests.skip=true
+      - store_artifacts:
+          path: target/demo-0.0.1-SNAPSHOT.jar
+
+  Unit-Test:
+
+    working_directory: ~/user_managemant_firstinstance
+
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
+
+    steps:
+      - checkout
+
+      - run: mvn test
+
+      - store_test_results:
+           path: target/surefire-reports
+
+  integration test on unix like:
+
+    working_directory: ~/user_managemant_firstinstance
+
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
+      - image: ubuntu:latest
+
+    steps:
+      - checkout
+
+      - run: mvn  verify -Dunit-tests.skip=true
+
+      - store_test_results:
+          path: target/surefire-reports
+
+  code review:
+
+    working_directory: ~/user_managemant_firstinstance
+
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
+      - image: sonarqube
+
+    steps:
+      - checkout
+
+      - run: mvn  sonar:sonar
+
+workflows:
+  version: 2
+  build-test-and-deploy:
+    jobs:
+      - build
+      - Unit-Test:
+          requires:
+            - build
+      - integration test on unix like:
+          requires:
+            - build
+      - code review:
+          requires:
+            - Unit-Test
+            - integration test on unix like
+
+
