@@ -68,7 +68,10 @@ jobs:
     steps:
       - checkout
 
-      - run: mvn  sonar:sonar
+      - run:
+          name: Analyze on SonarCloud
+          command: mvn verify sonar:sonar
+
 
 workflows:
   version: 2
@@ -82,6 +85,7 @@ workflows:
           requires:
             - build
       - code review:
+          context: SonarCloud
           requires:
             - Unit-Test
             - integration test on unix like

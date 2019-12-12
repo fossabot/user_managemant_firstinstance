@@ -14,6 +14,9 @@
     <description>Demo project for Looyas Spring Boot applications</description>
 
     <properties>
+        <sonar.projectKey>Looyas_user_managemant_firstinstance</sonar.projectKey>
+        <sonar.organization>looyas</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <java.version>1.8</java.version>
         <junit.version>4.12</junit.version>
         <mockito.version>2.23.4</mockito.version>
