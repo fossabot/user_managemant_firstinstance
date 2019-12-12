@@ -85,7 +85,7 @@ workflows:
           requires:
             - build
       - code review:
-          context: SonarCloud
+          context: circleci
           requires:
             - Unit-Test
             - integration test on unix like
