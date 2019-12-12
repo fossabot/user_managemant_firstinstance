@@ -80,7 +80,7 @@ jobs:
     steps:
       - run:
           name: deploy test
-          command: nohup  java -jar  home/circleci/user_managemant_firstinstance/target/demo-0.0.1-SNAPSHOT.jar
+          command: java -jar  home/circleci/user_managemant_firstinstance/target/demo-0.0.1-SNAPSHOT.jar
 
 
 workflows:
