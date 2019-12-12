@@ -16,7 +16,7 @@
     <properties>
         <sonar.projectKey>Looyas_user_managemant_firstinstance</sonar.projectKey>
         <sonar.organization>looyas</sonar.organization>
-        <sonar.host.url>http://192.168.10.193:9000</sonar.host.url>
+        <sonar.web.host>http://192.168.10.193:9000</sonar.web.host>
         <sonar.login>f57515e05861448ee61d06c49bf3f8d68428b9fc</sonar.login>
         <java.version>1.8</java.version>
         <junit.version>4.12</junit.version>
