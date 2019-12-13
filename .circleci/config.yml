@@ -81,7 +81,7 @@ jobs:
 
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: /workspace/user_managemant_firstinstance
       - run:
           name: deploy test
           command: java -jar  target/demo-0.0.1-SNAPSHOT.jar
