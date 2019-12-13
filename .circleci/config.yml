@@ -47,7 +47,6 @@ jobs:
 
     docker:
       - image: circleci/openjdk:8-jdk-stretch
-      - image: ubuntu:latest
 
     steps:
       - checkout
@@ -73,18 +72,13 @@ jobs:
           command: mvn verify sonar:sonar
 
   deploy to test env:
-
-    working_directory: ~/user_managemant_firstinstance
-
-    docker:
-      - image: circleci/openjdk:8-jdk-stretch
-
+    machine:
+      image: ubuntu-1604:201903-01
     steps:
-      - attach_workspace:
-          at: home/circleci/user_managemant_firstinstance/
+      - checkout
       - run:
-          name: deploy test
-          command: java -jar  target/demo-0.0.1-SNAPSHOT.jar
+          name: Deploy Master to Heroku
+          command: mvn clean heroku:deploy
 
 
 workflows:
