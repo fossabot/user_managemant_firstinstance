@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
 
   build:
@@ -80,6 +80,8 @@ jobs:
       - image: circleci/openjdk:8-jdk-stretch
 
     steps:
+      - attach_workspace:
+          at: /tmp/workspace
       - run:
           name: deploy test
           command: java -jar  target/demo-0.0.1-SNAPSHOT.jar
