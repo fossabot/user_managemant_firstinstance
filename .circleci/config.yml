@@ -86,12 +86,13 @@ jobs:
           command: mvn verify sonar:sonar
 
   deploy :
-    - attach_workspace:
-        at: /tmp
+
     docker:
       - image: circleci/openjdk:8-jdk-stretch
 
     steps:
+      - attach_workspace:
+            at: /tmp
       - run:
           name: deploy test
           command: |
