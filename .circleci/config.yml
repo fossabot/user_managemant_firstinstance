@@ -97,7 +97,9 @@ jobs:
           name: deploy test
           command: |
             chmod 777 /tmp/standalone-app.jar
-            bash java -jar  /tmp/standalone-app.jar
+            cd /tmp/
+            ls -a
+
 
 
 
