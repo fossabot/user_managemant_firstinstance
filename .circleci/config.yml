@@ -86,9 +86,8 @@ jobs:
           command: mvn verify sonar:sonar
 
   deploy :
-
-    working_directory: ~/user_managemant_firstinstance
-
+    - attach_workspace:
+        at: /tmp
     docker:
       - image: circleci/openjdk:8-jdk-stretch
 
@@ -97,7 +96,7 @@ jobs:
           name: deploy test
           command: |
             chmod 777 /tmp/standalone-app.jar
-            java -jar  /tmp/standalone-app.jar
+            bash java -jar  /tmp/standalone-app.jar
 
 
 
