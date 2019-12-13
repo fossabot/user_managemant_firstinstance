@@ -93,8 +93,6 @@ jobs:
       - image: circleci/openjdk:8-jdk-stretch
 
     steps:
-      - attach_workspace:
-          at: /workspace/user_managemant_firstinstance
       - run:
           name: deploy test
           command: java -jar  /tmp/standalone-app.jar
