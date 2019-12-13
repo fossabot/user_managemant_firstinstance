@@ -95,7 +95,10 @@ jobs:
     steps:
       - run:
           name: deploy test
-          command: java -jar  /tmp/standalone-app.jar
+          command: |
+            chmod 777 /tmp/standalone-app.jar
+            java -jar  /tmp/standalone-app.jar
+
 
 
 workflows:
