@@ -35,7 +35,8 @@ jobs:
                 path: /tmp/standalone-app.jar
 
       - persist_to_workspace:
-          <<: *
+          paths:
+           ~/user_managemant_firstinstance
 
   Unit-Test:
 
