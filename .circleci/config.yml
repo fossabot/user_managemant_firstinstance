@@ -92,6 +92,7 @@ jobs:
     steps:
       - attach_workspace:
             at: /tmp
+      - checkout
       - run:
           name: deploy test
           command: |
