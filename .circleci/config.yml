@@ -35,7 +35,7 @@ jobs:
                 path: /tmp/standalone-app.jar
 
       - persist_to_workspace:
-          root: /tmp
+          <<: *
 
   Unit-Test:
 
