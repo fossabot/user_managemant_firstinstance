@@ -27,7 +27,7 @@ jobs:
           name: Copy deployment artifacts to workspace
           command: |
             cp target/demo-0.0.1-SNAPSHOT.jar /tmp/standalone-app.jar
-            cp -r ./* /temp/user_managemant_firstinstance
+
 
       - store_test_results:
                 path: target/surefire-reports
@@ -36,9 +36,8 @@ jobs:
                 path: /tmp/standalone-app.jar
 
       - persist_to_workspace:
-          root: /temp
-          paths:
-           /temp/user_managemant_firstinstance
+          root: /root/user_managemant_firstinstance
+          paths: .
 
   Unit-Test:
 
