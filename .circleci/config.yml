@@ -38,7 +38,7 @@ jobs:
       - persist_to_workspace:
           root: /temp
           paths:
-           ~/user_managemant_firstinstance
+           /temp/user_managemant_firstinstance
 
   Unit-Test:
 
