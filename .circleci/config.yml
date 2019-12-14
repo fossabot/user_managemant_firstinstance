@@ -89,8 +89,8 @@ jobs:
     docker:
       - image: circleci/openjdk:8-jdk-browsers
     steps:
-      - attach_workspace:
-            at: /home/circleci/user_managemant_firstinstance
+      - restore_cache:
+          key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
       - run:
           name: deploy test
           command: HEROKU_API_KEY="53ba8613-0fa8-404f-9dca-84d6831d4cca" mvn clean heroku:deploy
