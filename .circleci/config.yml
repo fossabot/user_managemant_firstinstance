@@ -88,6 +88,7 @@ jobs:
     working_directory: ~/user_managemant_firstinstance
     docker:
       - image: circleci/openjdk:8-jdk-browsers
+      - image: circleci/node
     steps:
       - checkout
 
