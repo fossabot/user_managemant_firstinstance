@@ -103,7 +103,7 @@
                     </includes>
                     <jdkVersion>${java.version}</jdkVersion>
                     <processTypes>
-                        <web>java -jar target/looyas-0.0.1-SNAPSHOT.jar</web>
+                        <web>java $JAVA_OPTS -jar target/looyas-0.0.1-SNAPSHOT.jar</web>
                     </processTypes>
                 </configuration>
             </plugin>
