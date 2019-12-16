@@ -8,7 +8,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.looyas</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>Looyas-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Looyas-demo</name>
     <description>Demo project for Looyas Spring Boot applications</description>
@@ -103,7 +103,7 @@
                     </includes>
                     <jdkVersion>${java.version}</jdkVersion>
                     <processTypes>
-                        <web>java $JAVA_OPTS -jar ${project.build.directory}/${project.build.finalName}.jar</web>
+                        <web>java  -jar ${project.build.directory}/${project.build.finalName}.jar</web>
                     </processTypes>
                 </configuration>
             </plugin>
