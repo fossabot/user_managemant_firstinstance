@@ -87,6 +87,7 @@ jobs:
   deploy :
     working_directory: ~/user_managemant_firstinstance
     docker:
+      - image: circleci/openjdk:8-jdk-browsers
       - image: circleci/node
     steps:
       - checkout
@@ -104,10 +105,7 @@ jobs:
       - run:
           name: deploy test
           command: |
-            npm uninstall -g heroku-cli
-            npm i -g heroku
-            heroku create
-            mvn clean install
+            mvn clean package
             HEROKU_API_KEY="53ba8613-0fa8-404f-9dca-84d6831d4cca" mvn clean heroku:deploy
 workflows:
   version: 2
