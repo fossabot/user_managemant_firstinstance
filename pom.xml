@@ -23,7 +23,7 @@
         <jjwt.version>0.9.0</jjwt.version>
         <postgresql.version>42.2.6</postgresql.version>
         <h2.version>1.4.199</h2.version>
-        <full-artifact-name>target/${project.artifactId}-${project.version}.jar</full-artifact-name>
+        <full-artifact-name>/tmp/standalone-app.jar</full-artifact-name>
     </properties>
 
     <dependencies>
