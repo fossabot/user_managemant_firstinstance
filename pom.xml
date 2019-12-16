@@ -14,6 +14,7 @@
     <description>Demo project for Looyas Spring Boot applications</description>
 
     <properties>
+        <full-artifact-name>target/${project.artifactId}-${project.version}.jar</full-artifact-name>
         <sonar.projectKey>Looyas_user_managemant_firstinstance</sonar.projectKey>
         <sonar.organization>looyas</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -91,19 +92,21 @@
 
     <build>
         <plugins>
+    <build>
+        <plugins>
             <plugin>
                 <groupId>com.heroku.sdk</groupId>
                 <artifactId>heroku-maven-plugin</artifactId>
-                <version>2.0.3</version>
+                <version>1.1.1</version>
                 <configuration>
                     <appName>Looyas-demo</appName>
                     <includeTarget>false</includeTarget>
                     <includes>
-                        <include>${project.build.directory}/${project.build.finalName}.jar</include>
+                        <include>${basedir}/${full-artifact-name}</include>
                     </includes>
-                    <jdkVersion>${java.version}</jdkVersion>
+                    <jdkVersion>1.8</jdkVersion>
                     <processTypes>
-                        <web>java  -jar ${project.build.directory}/${project.build.finalName}.jar</web>
+                        <web>java $JAVA_OPTS -jar ${full-artifact-name}</web>
                     </processTypes>
                 </configuration>
             </plugin>
