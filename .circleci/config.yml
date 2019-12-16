@@ -88,7 +88,6 @@ jobs:
     working_directory: ~/user_managemant_firstinstance
     docker:
       - image: circleci/openjdk:8-jdk-browsers
-      - image: heroku/heroku
     steps:
       - checkout
 
@@ -104,10 +103,7 @@ jobs:
 
       - run:
           name: deploy test
-          command: |
-           heroku create looyasDemo
-           git push heroku master
-           HEROKU_API_KEY="53ba8613-0fa8-404f-9dca-84d6831d4cca" mvn clean heroku:deploy
+          command: HEROKU_API_KEY="53ba8613-0fa8-404f-9dca-84d6831d4cca" mvn clean heroku:deploy
 workflows:
   version: 2
   build-test-and-deploy:
@@ -122,9 +118,10 @@ workflows:
       - code review:
           context: SonarCloud
           requires:
-            - Unit-Test
-            - integration test on unix like
+            - build
       - deploy :
           requires:
             - code review
+            - integration test on unix like
+            - Unit-Test
 
