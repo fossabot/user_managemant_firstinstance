@@ -10,7 +10,7 @@
     <groupId>com.looyas</groupId>
     <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
+    <name>Looyas-demo</name>
     <description>Demo project for Looyas Spring Boot applications</description>
 
     <properties>
