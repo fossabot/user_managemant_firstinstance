@@ -104,8 +104,8 @@ jobs:
       - run:
           name: deploy test
           command: |
-          git push heroku master
-          HEROKU_API_KEY="53ba8613-0fa8-404f-9dca-84d6831d4cca" mvn clean heroku:deploy
+           git push heroku master
+           HEROKU_API_KEY="53ba8613-0fa8-404f-9dca-84d6831d4cca" mvn clean heroku:deploy
 workflows:
   version: 2
   build-test-and-deploy:
