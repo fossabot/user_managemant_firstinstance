@@ -54,7 +54,7 @@ jobs:
       - store_test_results:
           path: target/surefire-reports
 
-  integration test on unix like:
+  integration test:
 
     working_directory: ~/user_managemant_firstinstance
 
@@ -92,14 +92,14 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "b7:f2:ae:d8:53:d6:1f:16:57:62:81:eb:9a:27:43:70"
-            - run:
-                name: fix host authenticity for production server
-                command: ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
-            - run:
-                name: deploy app to local machine
-                command: |
-                scp tmp/standalone-app.jar $SSH_USERNAME@$SSH_HOST:/home/looyas
-                ssh $SSH_USERNAME@$SSH_HOST "nohup java -jar standalone-app.jar &"
+      - run:
+          name: fix host authenticity for production server
+          command: ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
+      - run:
+          name: deploy app to local machine
+          command: |
+            scp tmp/standalone-app.jar $SSH_USERNAME@$SSH_HOST:/home/looyas
+            ssh $SSH_USERNAME@$SSH_HOST "nohup java -jar standalone-app.jar &"
 
 workflows:
   version: 2
@@ -109,16 +109,16 @@ workflows:
       - Unit-Test:
           requires:
             - build
-      - integration test on unix like:
+      - integration test:
           requires:
             - build
       - code review:
           context: SonarCloud
           requires:
             - build
-      - deploy :
+      - deploy:
           requires:
             - code review
-            - integration test on unix like
+            - integration test
             - Unit-Test
 
