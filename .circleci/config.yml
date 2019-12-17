@@ -99,7 +99,7 @@ jobs:
           name: deploy app to local machine
           command: |
             scp tmp/standalone-app.jar $SSH_USERNAME@$SSH_HOST:/home/looyas
-            ssh $SSH_USERNAME@$SSH_HOST "nohup java -jar standalone-app.jar &"
+            ssh $SSH_USERNAME@$SSH_HOST "nohup java -jar standalone-app.jar & "
 
 workflows:
   version: 2
