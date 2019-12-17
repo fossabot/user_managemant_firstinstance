@@ -99,7 +99,7 @@
                     <appName>looyas</appName>
                     <jdkVersion>1.8</jdkVersion>
                     <processTypes>
-                        <web>java -jar tmp/standalone-app.jar </web>
+                        <web>java $JAVA_OPTS  -jar tmp/standalone-app.jar </web>
                     </processTypes>
                 </configuration>
 
