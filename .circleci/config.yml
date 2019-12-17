@@ -88,6 +88,7 @@ jobs:
     working_directory: ~/user_managemant_firstinstance
     docker:
       - image: heroku/heroku
+    steps:
       - run:
           name: deploy test
           command: heroku deploy:jar tmp/standalone-app.jar --app looyas
