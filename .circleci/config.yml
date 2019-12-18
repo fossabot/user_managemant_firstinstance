@@ -83,7 +83,7 @@ jobs:
       - run:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
-  deploy to HEROKU:
+  deploy To HEROKU:
     working_directory: ~/user_managemant_firstinstance
     docker:
       - image: circleci/openjdk:8-jdk-browsers
@@ -140,7 +140,7 @@ workflows:
           context: SonarCloud
           requires:
             - build
-      - deploy to HEROKU:
+      - deploy To HEROKU:
           requires:
             - code review
             - integration test
