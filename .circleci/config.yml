@@ -105,9 +105,7 @@ jobs:
 
       - run:
           name: deploy test
-          command: |
-             mvn clean install
-             HEROKU_API_KEY="53ba8613-0fa8-404f-9dca-84d6831d4cca" mvn clean heroku:deploy
+          command: HEROKU_API_KEY="53ba8613-0fa8-404f-9dca-84d6831d4cca" mvn clean heroku:deploy
   deploy:
     machine:
       enabled: true
