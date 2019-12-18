@@ -83,7 +83,31 @@ jobs:
       - run:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
+  deploy to HEROKU:
+    working_directory: ~/user_managemant_firstinstance
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
 
+
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
+
+      - run: mvn dependency:go-offline
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
+
+      - run:
+          name: deploy test
+          command:|
+          mvn clean install
+          HEROKU_API_KEY="53ba8613-0fa8-404f-9dca-84d6831d4cca" mvn clean heroku:deploy
   deploy:
     machine:
       enabled: true
@@ -116,9 +140,15 @@ workflows:
           context: SonarCloud
           requires:
             - build
+      - deploy to HEROKU:
+          requires:
+            - code review
+            - integration test
+            - Unit-Test
       - deploy:
           requires:
             - code review
             - integration test
             - Unit-Test
+            - deploy to HEROKU
 
