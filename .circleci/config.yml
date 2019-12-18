@@ -98,8 +98,8 @@ jobs:
       - run:
           name: deploy app to local machine
           command: |
-            rsync -avzP -e "ssh -p 19644" $SSH_USER@0.tcp.ngrok.io:tmp/standalone-app.jar /home/looyas
-
+            scp tmp/standalone-app.jar $SSH_USERNAME@$SSH_HOST: /home/looyas
+            ssh $SSH_USERNAME@$SSH_HOST "nohup java -jar standalone-app.jar & "
 
 workflows:
   version: 2
