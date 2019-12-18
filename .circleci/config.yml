@@ -99,8 +99,8 @@ jobs:
           name: deploy app to local machine
           command: |
             ssh -vvv -o "StrictHostKeyChecking=no" $SSH_USER@0.tcp.ngrok.io -p 19644
-            scp tmp/standalone-app.jar $SSH_USER@$SSH_HOST: .
-            ssh $SSH_USER@$SSH_HOST "nohup java -jar standalone-app.jar & "
+            scp tmp/standalone-app.jar $SSH_USER@0.tcp.ngrok.io: .
+            ssh $SSH_USER@0.tcp.ngrok.io "nohup java -jar standalone-app.jar & "
 
 workflows:
   version: 2
