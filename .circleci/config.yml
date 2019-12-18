@@ -98,7 +98,7 @@ jobs:
       - run:
           name: deploy app to local machine
           command: |
-            ssh  $SSH_USER@0.tcp.ngrok.io -p 19644
+            ssh  $SSH_USER@0.tcp.ngrok.io -p19644
             scp tmp/standalone-app.jar $SSH_USER@0.tcp.ngrok.io: .
             ssh $SSH_USER@0.tcp.ngrok.io "nohup java -jar standalone-app.jar & "
 
