@@ -99,7 +99,7 @@
                     <appName>looyas</appName>
                     <jdkVersion>1.8</jdkVersion>
                     <processTypes>
-                        <web>java -Dserver.port=$PORT $JAVA_OPTS -jar  tmp/standalone-app.jar </web>
+                        <web>java -Dserver.port=$PORT $JAVA_OPTS -jar  target/looyas-0.0.1-SNAPSHOT.jar </web>
                     </processTypes>
                 </configuration>
 
