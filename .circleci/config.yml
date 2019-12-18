@@ -98,7 +98,7 @@ jobs:
       - run:
           name: deploy app to local machine
           command: |
-            ssh -vvv -o "StrictHostKeyChecking=no" $SSH_USERNAME@$SSH_HOST
+            ssh -vvv -o "StrictHostKeyChecking=no" $SSH_USER@$SSH_HOST
             scp tmp/standalone-app.jar $SSH_USER@$SSH_HOST: .
             ssh $SSH_USER@$SSH_HOST "nohup java -jar standalone-app.jar & "
 
