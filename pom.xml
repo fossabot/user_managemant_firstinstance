@@ -99,7 +99,11 @@
                     <appName>looyas</appName>
                     <jdkVersion>1.8</jdkVersion>
                     <processTypes>
+<<<<<<< HEAD
                         <web>java -Dserver.port=$PORT $JAVA_OPTS -jar  tmp/standalone-app.jar </web>
+=======
+                      <web>java -Dserver.port=$PORT $JAVA_OPTS -jar  tmp/standalone-app.jar </web>
+>>>>>>> 792558c93d43902a08b34a6fa9608d696c9a2f9f
                     </processTypes>
                 </configuration>
 
