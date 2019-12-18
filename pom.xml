@@ -96,7 +96,7 @@
                 <artifactId>heroku-maven-plugin</artifactId>
                 <version>2.0.13</version>
                 <configuration>
-                    <appName>looyas</appName>
+                    <appName>starterkitbackend</appName>
                     <jdkVersion>1.8</jdkVersion>
                     <processTypes>
                         <web>java -Dserver.port=$PORT $JAVA_OPTS -jar  target/looyas-0.0.1-SNAPSHOT.jar </web>
