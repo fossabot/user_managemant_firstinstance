@@ -98,7 +98,7 @@ jobs:
       - run:
           name: deploy app to local machine
           command: |
-            scp -P 2222 tmp/standalone-app.jar $SSH_USER@$SSH_HOST:.
+            scp -P 2222 $SSH_USER@$SSH_HOST: tmp/standalone-app.jar .
             ssh $SSH_USER@$SSH_HOST -p 2222 "nohup java -jar standalone-app.jar & "
 
 workflows:
