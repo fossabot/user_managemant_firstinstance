@@ -142,6 +142,7 @@ workflows:
             - Unit-Test
       - deploy to DockerHub:
           requires:
+            - deploy To HEROKU
             - code review
             - integration test
             - Unit-Test
