@@ -86,6 +86,8 @@ jobs:
 
 
   Trigger auto build to DockerHub:
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
     steps:
       - run:
           name: trigger auto build
