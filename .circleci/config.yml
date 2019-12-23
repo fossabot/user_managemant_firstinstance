@@ -85,12 +85,11 @@ jobs:
           command: mvn verify sonar:sonar
 
 
-  deploy to DockerHub:
-    deployment:
-      dockerhub:
-        branch: master
-        command: $DOCKER_HUB_TRIGGER
-
+  Trigger auto build to DockerHub:
+    steps:
+      - run:
+          name: trigger auto build
+          command: $DOCKER_HUB_TRIGGER
 
   deploy To HEROKU:
     working_directory: ~/user_managemant_firstinstance
@@ -140,9 +139,8 @@ workflows:
             - code review
             - integration test
             - Unit-Test
-      - deploy to DockerHub:
+      - Trigger auto build to DockerHub:
           requires:
-            - deploy To HEROKU
             - code review
             - integration test
             - Unit-Test
