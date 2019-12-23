@@ -83,6 +83,15 @@ jobs:
       - run:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
+
+
+  deploy to DockerHub:
+    deployment:
+      dockerhub:
+        branch: master
+        commands:
+          - $DOCKER_HUB_TRIGGER
+          -
   deploy To HEROKU:
     working_directory: ~/user_managemant_firstinstance
     docker:
@@ -131,5 +140,11 @@ workflows:
             - code review
             - integration test
             - Unit-Test
+      - deploy to DockerHub:
+          requires:
+            - code review
+            - integration test
+            - Unit-Test
+
 
 
