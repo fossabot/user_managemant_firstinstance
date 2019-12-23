@@ -12,5 +12,5 @@ COPY ./src ./src
 # Build for release
 RUN mvn clean package  && cp target/*.jar app.jar
 ADD target/lib /usr/share/myservice/lib
-ADD target/*.jar /usr/share/myservice/myservice.jar
+ADD target/*.jar  /usr/share/myservice/myservice.jar
 
