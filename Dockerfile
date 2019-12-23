@@ -10,6 +10,6 @@ RUN mvn dependency:go-offline -B
 # Copy your other files
 COPY ./src ./src
 # Build for release
-RUN mvn clean package  && cp target/*.jar app.jar
+RUN mvn clean package && cp target/*.jar app.jar
 
 
