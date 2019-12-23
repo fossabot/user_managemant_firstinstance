@@ -89,8 +89,7 @@ jobs:
     deployment:
       dockerhub:
         branch: master
-        commands:
-          - $DOCKER_HUB_TRIGGER
+        command: $DOCKER_HUB_TRIGGER
 
 
   deploy To HEROKU:
