@@ -75,7 +75,7 @@ jobs:
              docker push registry.heroku.com/$HEROKU_APP_NAME/web
   Release image:
     docker:
-      - image: heroku/heroku
+      - image: heroku/heroku:18-build.nightly
     steps:
       - run:
           name: Deploy to Heroku
