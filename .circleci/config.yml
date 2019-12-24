@@ -142,7 +142,7 @@ workflows:
           context: SonarCloud
           requires:
             - build
-      -Build image app:
+      - Build image app:
         requires:
           - code review
           - integration test
