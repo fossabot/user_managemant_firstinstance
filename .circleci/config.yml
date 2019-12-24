@@ -58,8 +58,7 @@ jobs:
     steps:
       - checkout
       - run: |
-          TAG=0.1.$CIRCLE_BUILD_NUM
-          docker build -t looyas/starter_kit/$TAG .
+          docker build -t looyas/starter_kit.
       - persist_to_workspace:
           root: /home/circleci/user_managemant_firstinstance
           paths: ./
