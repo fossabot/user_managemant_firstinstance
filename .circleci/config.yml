@@ -67,9 +67,9 @@ jobs:
     machine: true
     steps:
       - checkout
-      #push Docker image
+      - attach_workspace:
+          at: ./
       - run: |
-          TAG=0.1.$CIRCLE_BUILD_NUM
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
           docker push looyas/starter_kit:$TAG
   Trigger auto build to DockerHub:
@@ -80,7 +80,6 @@ jobs:
       - run:
           name: trigger build docker image
           command: $DOCKER_HUB_TRIGGER
-
   deploy To HEROKU:
     working_directory: ~/user_managemant_firstinstance
     docker:
