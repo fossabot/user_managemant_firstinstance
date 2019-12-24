@@ -66,12 +66,11 @@ jobs:
   Push to DockerHub:
     machine: true
     steps:
-      - checkout
       - attach_workspace:
           at: ./
       - run: |
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-          docker push looyas/starter_kit:$TAG
+          docker push looyas/starter_kit:latest
   Trigger auto build to DockerHub:
     working_directory: ~/user_managemant_firstinstance
     docker:
