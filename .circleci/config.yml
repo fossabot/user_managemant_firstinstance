@@ -73,7 +73,14 @@ jobs:
              docker pull looyas/starter_kit:latest .
              docker tag looyas/starter_kit:latest  registry.heroku.com/$HEROKU_APP_NAME/web
              docker push registry.heroku.com/$HEROKU_APP_NAME/web
-             docker run  registry.heroku.com/$HEROKU_APP_NAME/web
+  Release image:
+    docker:
+      - image: heroku/heroku
+    steps:
+      - run:
+          name: Deploy to Heroku
+          command: |
+            heroku container:release web
   deploy To HEROKU:
     working_directory: ~/user_managemant_firstinstance
     docker:
@@ -118,6 +125,9 @@ workflows:
       - deploy To HEROKU:
           requires:
             - Build and push image
+      - Release image:
+          requires:
+            - deploy image to heroku
 
 
 
