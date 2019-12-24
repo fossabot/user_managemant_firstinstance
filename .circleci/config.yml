@@ -95,7 +95,7 @@ workflows:
           context: SonarCloud
           requires:
             - build
-      - Build image & Push to DockerHub:
+      - Build image and push to DockerHub:
           requires:
             - code review
             - integration test
