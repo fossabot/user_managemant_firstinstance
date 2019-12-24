@@ -143,10 +143,10 @@ workflows:
           requires:
             - build
       - Build image app:
-        requires:
-          - code review
-          - integration test
-          - Unit-Test
+          requires:
+            - code review
+            - integration test
+            - Unit-Test
       - deploy To HEROKU:
           requires:
             - Build image app
