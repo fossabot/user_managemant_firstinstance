@@ -52,18 +52,7 @@ jobs:
       - run:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
-  Build image app:
-    working_directory: ~/user_managemant_firstinstance
-    machine: true
-    steps:
-      - checkout
-      - run: |
-          TAG=0.1.$CIRCLE_BUILD_NUM
-          docker build -t looyas/starter_kit:latest .
-      - persist_to_workspace:
-          root: /home/circleci/user_managemant_firstinstance
-          paths: ./
-  Push to DockerHub:
+  Build image & Push to DockerHub:
     machine: true
     steps:
       - attach_workspace:
@@ -73,14 +62,6 @@ jobs:
           docker build -t looyas/starter_kit:latest .
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
           docker push looyas/starter_kit:latest
-  Trigger auto build to DockerHub:
-    working_directory: ~/user_managemant_firstinstance
-    docker:
-      - image: circleci/openjdk:8-jdk-stretch
-    steps:
-      - run:
-          name: trigger build docker image
-          command: $DOCKER_HUB_TRIGGER
   deploy To HEROKU:
     working_directory: ~/user_managemant_firstinstance
     docker:
@@ -114,20 +95,14 @@ workflows:
           context: SonarCloud
           requires:
             - build
-      - Build image app:
+      - Build image & Push to DockerHub:
           requires:
             - code review
             - integration test
             - Unit-Test
-      - Push to DockerHub:
-          requires:
-            - Build image app
       - deploy To HEROKU:
           requires:
-            - Push to DockerHub
-      - Trigger auto build to DockerHub:
-          requires:
-            - Push to DockerHub
+            - Build image & Push to DockerHub
 
 
 
