@@ -119,6 +119,9 @@ workflows:
             - code review
             - integration test
             - Unit-Test
+      - Push to DockerHub:
+          requires:
+            - Build image app
       - deploy To HEROKU:
           requires:
             - Build image app
