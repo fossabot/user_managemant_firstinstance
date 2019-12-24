@@ -52,7 +52,7 @@ jobs:
       - run:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
-  Build image & Push to DockerHub:
+  Build image and push to DockerHub:
     machine: true
     steps:
       - attach_workspace:
