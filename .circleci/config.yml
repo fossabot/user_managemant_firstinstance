@@ -53,6 +53,7 @@ jobs:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
   Build image app:
+    working_directory: ~/user_managemant_firstinstance
     machine: true
     steps:
       - checkout
