@@ -13,5 +13,5 @@ RUN mvn dependency:go-offline -B
 COPY ./src ./src
 # Build for release
 RUN mvn clean package && cp target/*.jar app.jar
-
+CMD ["java", "-jar", "/app/app.jar", "–-trace"]
 
