@@ -61,6 +61,7 @@ jobs:
           root: /home/circleci/user_managemant_firstinstance
           paths: ./
   Trigger auto build to DockerHub:
+    working_directory: ~/user_managemant_firstinstance
     docker:
       - image: circleci/openjdk:8-jdk-stretch
     steps:
