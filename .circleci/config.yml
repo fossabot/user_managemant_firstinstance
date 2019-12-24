@@ -62,6 +62,17 @@ jobs:
           docker build -t looyas/starter_kit:latest .
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
           docker push looyas/starter_kit:latest
+  deploy image to heroku:
+    machine: true
+    working_directory: ~/user_managemant_firstinstance
+    steps:
+      - run:
+          name: Deploy to Heroku
+          command: |
+             docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
+             docker pull looyas/starter_kit:latest registry.heroku.com/$HEROKU_APP_NAME/web
+             docker push registry.heroku.com/$HEROKU_APP_NAME/web
+
   deploy To HEROKU:
     working_directory: ~/user_managemant_firstinstance
     docker:
@@ -79,7 +90,7 @@ jobs:
           name: deploy test
           command: |
               mvn clean package
-              HEROKU_API_KEY="53ba8613-0fa8-404f-9dca-84d6831d4cca" mvn clean heroku:deploy
+              $HEROKU_API_KEY mvn clean heroku:deploy
 workflows:
   version: 2.1
   build-test-and-deploy:
@@ -100,6 +111,9 @@ workflows:
             - code review
             - integration test
             - Unit-Test
+      - deploy image to heroku:
+          requires:
+            - Build image and push to DockerHub
       - deploy To HEROKU:
           requires:
             - Build image and push to DockerHub

@@ -1,7 +1,7 @@
 FROM maven:3.6.1-jdk-8
 MAINTAINER Adam ISSAOUI <adam.issaoui@looyas.com>
 WORKDIR /user_managemant_firstinstance
-ENTRYPOINT ["/usr/bin/java", "-jar", "/usr/share/myservice/myservice.jar"]
+ENTRYPOINT ["/usr/bin/java", "-jar", "app.jar"]
 # Copy the Project Object Model file
 COPY ./pom.xml ./pom.xml
 ENV MAVEN_OPTS "-Xmx1024m"
