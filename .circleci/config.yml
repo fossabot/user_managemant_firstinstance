@@ -84,6 +84,12 @@ jobs:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
 
+  Build image app:
+    machine: true
+    steps:
+      - checkout
+      - run: docker build -t starter_kit/latest
+
 
   Trigger auto build to DockerHub:
     docker:
@@ -136,16 +142,19 @@ workflows:
           context: SonarCloud
           requires:
             - build
+      -Build image app:
+        requires:
+          - code review
+          - integration test
+          - Unit-Test
       - deploy To HEROKU:
           requires:
-            - code review
-            - integration test
-            - Unit-Test
+            - Build image app
+
       - Trigger auto build to DockerHub:
           requires:
-            - code review
-            - integration test
-            - Unit-Test
+            - Build image app
+
 
 
 
