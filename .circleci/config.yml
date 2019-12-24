@@ -57,10 +57,9 @@ jobs:
     steps:
       - checkout
       - run: docker build -t starter_kit/latest .
-      - run: docker save -o ./ starter_kit/latest
       - persist_to_workspace:
           root: /home/circleci/user_managemant_firstinstance
-          paths: .
+          paths: ./
   Trigger auto build to DockerHub:
     docker:
       - image: circleci/openjdk:8-jdk-stretch
