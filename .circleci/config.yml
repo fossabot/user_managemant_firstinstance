@@ -59,9 +59,9 @@ jobs:
           at: .
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
-          docker build -t looyas/starter_kit:latest .
+          docker build -t looyas/starter_kit:$TAG .
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-          docker push looyas/starter_kit:latest
+          docker push looyas/starter_kit:$TAG
   deploy image to heroku:
     machine: true
     working_directory: ~/user_managemant_firstinstance
@@ -69,10 +69,10 @@ jobs:
       - run:
           name: Deploy to Heroku
           command: |
-             docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
-             docker pull looyas/starter_kit:latest registry.heroku.com/$HEROKU_APP_NAME/web
+             echo $HEROKU_API_KEY | docker login --username=$HEROKU_LOGIN --password-stdin registry.heroku.com
+             docker pull looyas/starter_kit:latest
+             docker tag looyas/starter_kit:latest  registry.heroku.com/$HEROKU_APP_NAME/web
              docker push registry.heroku.com/$HEROKU_APP_NAME/web
-
   deploy To HEROKU:
     working_directory: ~/user_managemant_firstinstance
     docker:
