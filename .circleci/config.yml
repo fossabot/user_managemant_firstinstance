@@ -102,7 +102,7 @@ workflows:
             - Unit-Test
       - deploy To HEROKU:
           requires:
-            - Build image & Push to DockerHub
+            - Build image and push to DockerHub
 
 
 
