@@ -1,96 +1,63 @@
 version: 2.1
 jobs:
-
   build:
-
     working_directory: ~/user_managemant_firstinstance
-
     docker:
       - image: circleci/openjdk:8-jdk-stretch
-
     steps:
-
       - checkout
-
       - restore_cache:
           key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
-
       - run: mvn dependency:go-offline
-
       - save_cache:
           paths:
             - ~/.m2
           key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
-
       - run: mvn clean package -Dunit-tests.skip=true
       - run:
           name: Copy deployment artifacts to workspace
           command: |
             cp target/looyas-0.0.1-SNAPSHOT.jar /tmp/standalone-app.jar
-
-
       - store_test_results:
                 path: target/surefire-reports
-
       - store_artifacts:
                 path: /tmp/standalone-app.jar
-
       - persist_to_workspace:
           root: /home/circleci/user_managemant_firstinstance
           paths: .
-
   Unit-Test:
-
     working_directory: ~/user_managemant_firstinstance
-
     docker:
       - image: circleci/openjdk:8-jdk-stretch
-
     steps:
       - checkout
-
       - run: mvn test
-
       - store_test_results:
           path: target/surefire-reports
-
   integration test:
-
     working_directory: ~/user_managemant_firstinstance
-
     docker:
       - image: circleci/openjdk:8-jdk-stretch
-
-
     steps:
       - checkout
-
       - run: mvn  verify -Dunit-tests.skip=true
-
       - store_test_results:
           path: target/surefire-reports
-
   code review:
-
     working_directory: ~/user_managemant_firstinstance
-
     docker:
       - image: circleci/openjdk:8-jdk-stretch
-
     steps:
       - checkout
-
       - run:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
-
   Build image app:
     machine: true
     steps:
       - checkout
       - run: docker build -t starter_kit/latest .
-
-
+      - run: docker save -o ./ starter_kit/latest
   Trigger auto build to DockerHub:
     docker:
       - image: circleci/openjdk:8-jdk-stretch
@@ -103,30 +70,20 @@ jobs:
     working_directory: ~/user_managemant_firstinstance
     docker:
       - image: circleci/openjdk:8-jdk-browsers
-
-
-
     steps:
       - checkout
-
       - restore_cache:
           key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
-
       - run: mvn dependency:go-offline
-
       - save_cache:
           paths:
             - ~/.m2
           key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
-
       - run:
           name: deploy test
           command: |
               mvn clean package
               HEROKU_API_KEY="53ba8613-0fa8-404f-9dca-84d6831d4cca" mvn clean heroku:deploy
-
-
-
 workflows:
   version: 2
   build-test-and-deploy:
@@ -150,7 +107,6 @@ workflows:
       - deploy To HEROKU:
           requires:
             - Build image app
-
       - Trigger auto build to DockerHub:
           requires:
             - Build image app
