@@ -52,7 +52,7 @@ jobs:
       - run:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
-  Build image and push to DockerHub:
+  Build and push image:
     machine: true
     steps:
       - attach_workspace:
@@ -106,17 +106,17 @@ workflows:
           context: SonarCloud
           requires:
             - build
-      - Build image and push to DockerHub:
+      - Build and push image:
           requires:
             - code review
             - integration test
             - Unit-Test
       - deploy image to heroku:
           requires:
-            - Build image and push to DockerHub
+            - Build and push image
       - deploy To HEROKU:
           requires:
-            - Build image and push to DockerHub
+            - Build and push image
 
 
 
