@@ -90,7 +90,7 @@ jobs:
       - image: circleci/openjdk:8-jdk-stretch
     steps:
       - run:
-          name: trigger auto build
+          name: trigger build docker image
           command: $DOCKER_HUB_TRIGGER
 
   deploy To HEROKU:
