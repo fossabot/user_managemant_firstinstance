@@ -66,6 +66,7 @@ jobs:
     machine: true
     working_directory: ~/user_managemant_firstinstance
     steps:
+      - checkout
       - run:
           name: Deploy to Heroku
           command: |
