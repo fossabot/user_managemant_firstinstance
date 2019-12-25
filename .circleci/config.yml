@@ -128,10 +128,10 @@ workflows:
             - Unit-Test
       - deploy image to heroku:
           requires:
-            - Build and push image
+            - Build docker image
       - push image to DockerHub:
           requires:
-            - Build and push image
+            - Build docker image
 
 
 
