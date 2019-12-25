@@ -89,8 +89,8 @@ jobs:
           name: Deploy to Heroku
           command: |
             echo $HEROKU_API_KEY | docker login --username=$HEROKU_LOGIN --password-stdin registry.heroku.com
-            heroku buildpacks:clear
-            heroku buildpacks:add --index
+            heroku buildpacks:clear --app $HEROKU_APP_NAME
+            heroku buildpacks:add --app $HEROKU_APP_NAME
             heroku container:release web -a $HEROKU_APP_NAME
   deploy To HEROKU:
     working_directory: ~/user_managemant_firstinstance
