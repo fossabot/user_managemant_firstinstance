@@ -78,18 +78,12 @@ jobs:
           name: "Install Heroku CLI, if necessary"
           command: |
             if [[ $(command -v heroku) == "" ]]; then
-            curl https://cli-assets.heroku.com/install-ubuntu.sh  | sh
+            wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
             else
             echo "Heroku is already installed. No operation was performed."
             fi
-            sudo add-apt-repository "deb https://cli-assets.heroku.com/branches/stable/apt ./"
-            curl -L https://cli-assets.heroku.com/apt/release.key | sudo apt-key add -
-            sudo apt-get install heroku
             echo $HEROKU_API_KEY | docker login --username=$HEROKU_LOGIN --password-stdin registry.heroku.com
             heroku container:push web --app $HEROKU_APP_NAME
-            heroku buildpacks:clear --app $HEROKU_APP_NAME
-            heroku ps:scale web=1 --app $HEROKU_APP_NAME
-            heroku config:set WEBAPP_RUNNER_OPTS="-Dspring.profiles.active=test" --app $HEROKU_APP_NAME
             heroku container:release web -a $HEROKU_APP_NAME
   push image to DockerHub:
     working_directory: ~/user_managemant_firstinstance
