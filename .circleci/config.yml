@@ -70,8 +70,8 @@ jobs:
           name: Deploy to Heroku
           command: |
              echo $HEROKU_API_KEY | docker login --username=$HEROKU_LOGIN --password-stdin registry.heroku.com
-             docker pull looyas/starter_kit:$TAG
-             docker tag looyas/starter_kit:$TAG  registry.heroku.com/$HEROKU_APP_NAME/web
+             docker pull looyas/starter_kit:latest
+             docker tag looyas/starter_kit:latest  registry.heroku.com/$HEROKU_APP_NAME/web
              docker push registry.heroku.com/$HEROKU_APP_NAME/web
   Release image:
     docker:
