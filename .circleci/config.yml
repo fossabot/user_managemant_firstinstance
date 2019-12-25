@@ -85,7 +85,7 @@ jobs:
             echo $HEROKU_API_KEY | docker login --username=$HEROKU_LOGIN --password-stdin registry.heroku.com
             heroku container:push web --app $HEROKU_APP_NAME
             heroku buildpacks:clear --app $HEROKU_APP_NAME
-            heroku ps:scale web=1
+            heroku ps:scale web=1 --app $HEROKU_APP_NAME
             heroku config:set WEBAPP_RUNNER_OPTS="-Dspring.profiles.active=test" --app $HEROKU_APP_NAME
   push image to DockerHub:
     working_directory: ~/user_managemant_firstinstance
