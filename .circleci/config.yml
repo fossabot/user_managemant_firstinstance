@@ -75,7 +75,7 @@ jobs:
              docker push registry.heroku.com/$HEROKU_APP_NAME/web
   Release image:
     docker:
-      - image: heroku/heroku:18-build.nightly
+      - image: circleci/node:12
     steps:
       - run:
           name: "Install Heroku CLI, if necessary"
