@@ -52,15 +52,9 @@ jobs:
       - run:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
-  Build and push image:
+  Build docker image:
     machine: true
     steps:
-      - persist_to_workspace:
-            root: .
-            paths:
-              - looyas/starter_kit:$TAG
-      - attach_workspace:
-          at: .
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
           docker build -t looyas/starter_kit:$TAG .
@@ -94,7 +88,7 @@ jobs:
             heroku buildpacks:clear --app $HEROKU_APP_NAME
             heroku container:release web -a $HEROKU_APP_NAME
 
-  deploy To HEROKU:
+  push image to DockerHub:
     working_directory: ~/user_managemant_firstinstance
     docker:
       - image: circleci/openjdk:8-jdk-browsers
@@ -127,7 +121,7 @@ workflows:
           context: SonarCloud
           requires:
             - build
-      - Build and push image:
+      - Build docker image:
           requires:
             - code review
             - integration test
@@ -135,7 +129,7 @@ workflows:
       - deploy image to heroku:
           requires:
             - Build and push image
-      - deploy To HEROKU:
+      - push image to DockerHub:
           requires:
             - Build and push image
 
