@@ -73,25 +73,22 @@ jobs:
              docker pull looyas/starter_kit:latest
              docker tag looyas/starter_kit:latest  registry.heroku.com/$HEROKU_APP_NAME/web
              docker push registry.heroku.com/$HEROKU_APP_NAME/web
-  Release image:
-    docker:
-      - image: circleci/node:12
-    steps:
       - run:
           name: "Install Heroku CLI, if necessary"
           command: |
             if [[ $(command -v heroku) == "" ]]; then
-              curl https://cli-assets.heroku.com/install.sh | sh
+            curl https://cli-assets.heroku.com/install.sh | sh
             else
-              echo "Heroku is already installed. No operation was performed."
+            echo "Heroku is already installed. No operation was performed."
             fi
       - run:
           name: Deploy to Heroku
           command: |
             echo $HEROKU_API_KEY | docker login --username=$HEROKU_LOGIN --password-stdin registry.heroku.com
+            heroku container:push web --app $HEROKU_APP_NAME
             heroku buildpacks:clear --app $HEROKU_APP_NAME
-
             heroku container:release web -a $HEROKU_APP_NAME
+
   deploy To HEROKU:
     working_directory: ~/user_managemant_firstinstance
     docker:
@@ -136,9 +133,7 @@ workflows:
       - deploy To HEROKU:
           requires:
             - Build and push image
-      - Release image:
-          requires:
-            - deploy image to heroku
+
 
 
 
