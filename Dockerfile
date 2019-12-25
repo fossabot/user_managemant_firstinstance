@@ -4,6 +4,7 @@ WORKDIR /user_managemant_firstinstance
 # Copy the Project Object Model file
 COPY ./pom.xml ./pom.xml
 ENV MAVEN_OPTS "-Xmx1024m"
+
 RUN apt-get update && apt-get upgrade -y
 # Fetch all dependencies
 RUN mvn dependency:go-offline -B
