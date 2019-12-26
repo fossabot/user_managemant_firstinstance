@@ -1,4 +1,4 @@
-FROM maven:3-jdk-11 as builder
+FROM maven:3.6.1-jdk-8 as builder
 # create app folder for sources
 RUN mkdir -p /build
 WORKDIR /build
@@ -11,7 +11,7 @@ COPY src /build/src
 RUN mvn package
 
 
-FROM openjdk:11-slim as runtime
+FROM maven:3.6.1-jdk-8 as runtime
 #Set app home folder
 ENV APP_HOME /app
 #Possibility to set JVM options (https://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html)
