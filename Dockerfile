@@ -28,7 +28,7 @@ VOLUME $APP_HOME/config
 WORKDIR $APP_HOME
 #Copy executable jar file from the builder image
 COPY --from=builder /build/target/*.jar app.jar
-ENTRYPOINT [ "sh", "-c", "java -Dserver.port=$PORT $JAVA_OPTS -jar app.jar" ]
+ENTRYPOINT [ "sh", "-c", "java", "-Dserver.port","=","$PORT"," $JAVA_OPTS"," -jar", "app.jar" ]
 #Second option using shell form:
 #ENTRYPOINT exec java $JAVA_OPTS -jar app.jar $0 $@
 
