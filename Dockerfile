@@ -1,4 +1,4 @@
-FROM maven:3.6.1-jdk-8 as builder
+FROM maven:3-jdk-11 as builder
 # create app folder for sources
 RUN mkdir -p /build
 WORKDIR /build
@@ -28,7 +28,6 @@ VOLUME $APP_HOME/config
 WORKDIR $APP_HOME
 #Copy executable jar file from the builder image
 COPY --from=builder /build/target/*.jar app.jar
-ENTRYPOINT [ "sh","-c","java","-Dserver.port","=","$PORT","$JAVA_OPTS","-jar","app.jar" ]
+ENTRYPOINT [ "java -Dserver.port=$PORT $JAVA_OPTS -jar app.jar" ]
 #Second option using shell form:
-#ENTRYPOINT exec java $JAVA_OPTS -jar app.jar $0 $@
 
