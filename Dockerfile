@@ -12,4 +12,4 @@ RUN mvn dependency:go-offline -B
 COPY ./src ./src
 # Build for release
 RUN mvn clean package && cp target/*.jar app.jar
-CMD ["java -Dserver.port=$PORT $JAVA_OPTS app.jar"]
+CMD ["java -Dserver.port=$PORT $JAVA_OPTS target/looyas-0.0.1-SNAPSHOT.jar"]
