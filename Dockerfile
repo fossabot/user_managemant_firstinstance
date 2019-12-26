@@ -3,13 +3,13 @@ MAINTAINER Adam ISSAOUI <adam.issaoui@looyas.com>
 WORKDIR /user_managemant_firstinstance
 # Copy the Project Object Model file
 COPY ./pom.xml ./pom.xml
-ENV MAVEN_OPTS "-Xmx1024m"
-
 RUN apt-get update && apt-get upgrade -y
 # Fetch all dependencies
 RUN mvn dependency:go-offline -B
 # Copy your other files
 COPY ./src ./src
+COPY target/*.jar app.jar
 # Build for release
-RUN mvn clean package && cp target/*.jar app.jar
-CMD ["java -Dserver.port=$PORT $JAVA_OPTS target/looyas-0.0.1-SNAPSHOT.jar"]
+RUN mvn clean package
+COPY target/*.jar app.jar
+CMD ["java -Dserver.port=$PORT $JAVA_OPTS -jar app.jar"]
