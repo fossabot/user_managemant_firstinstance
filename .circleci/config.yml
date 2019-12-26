@@ -86,7 +86,8 @@ jobs:
             npm update -g heroku-cli
             echo $HEROKU_API_KEY | docker login --username=$HEROKU_LOGIN --password-stdin registry.heroku.com
             heroku container:push web --app $HEROKU_APP_NAME
-             heroku container:release web --app $HEROKU_APP_NAME
+            heroku container:release web -a $HEROKU_APP_NAME
+
   push image to DockerHub:
     working_directory: ~/user_managemant_firstinstance
     docker:
