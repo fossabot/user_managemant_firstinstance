@@ -84,6 +84,8 @@ jobs:
             echo "Heroku is already installed. No operation was performed."
             fi
             npm update -g heroku-cli
+            heroku plugins:install heroku-repo
+            heroku repo:purge_cache -a $HEROKU_APP_NAME
             echo $HEROKU_API_KEY | docker login --username=$HEROKU_LOGIN --password-stdin registry.heroku.com
             heroku container:push web --app $HEROKU_APP_NAME
             heroku container:release web -a $HEROKU_APP_NAME

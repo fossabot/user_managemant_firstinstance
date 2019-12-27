@@ -14,11 +14,9 @@ RUN mvn clean package
 FROM openjdk:8-jdk-alpine as runtime
 #Set app home folder
 ENV APP_HOME /app
-ENV PORT "5000"
 #Possibility to set JVM options (https://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html)
 #Create base app folder
 RUN mkdir $APP_HOME
-ENV MAVEN_OPTS "-Xmx1024m"
 #Create folder to save configuration files
 RUN mkdir $APP_HOME/config
 #Create folder with application logs
