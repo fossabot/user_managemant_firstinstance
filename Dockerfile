@@ -1,4 +1,4 @@
-FROM maven:3.6.1-jdk-8 as builder
+FROM zenika/alpine-maven as builder
 # create app folder for sources
 RUN mkdir -p /build
 WORKDIR /build
@@ -11,7 +11,7 @@ COPY src /build/src
 # Build application
 RUN mvn clean package
 
-FROM maven:3.6.1-jdk-8 as runtime
+FROM zenika/alpine-maven as runtime
 #Set app home folder
 ENV APP_HOME /app
 #Possibility to set JVM options (https://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html)
