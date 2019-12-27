@@ -3,6 +3,7 @@ FROM maven:3.6.1-jdk-8 as builder
 RUN mkdir -p /build
 WORKDIR /build
 COPY pom.xml /build
+ENV MAVEN_OPTS "-Xmx1024m"
 #Download all required dependencies into one layer
 RUN mvn -B dependency:resolve dependency:resolve-plugins
 #Copy source code
@@ -16,6 +17,7 @@ ENV APP_HOME /app
 #Possibility to set JVM options (https://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html)
 #Create base app folder
 RUN mkdir $APP_HOME
+ENV MAVEN_OPTS "-Xmx1024m"
 #Create folder to save configuration files
 RUN mkdir $APP_HOME/config
 #Create folder with application logs
