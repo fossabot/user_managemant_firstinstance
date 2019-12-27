@@ -8,26 +8,23 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.looyas</groupId>
-    <artifactId>looyas</artifactId>
+    <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>looyas</name>
+    <name>demo</name>
     <description>Demo project for Looyas Spring Boot applications</description>
 
     <properties>
-        <sonar.projectKey>Looyas_user_managemant_firstinstance</sonar.projectKey>
-        <sonar.organization>looyas</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <java.version>1.8</java.version>
         <junit.version>4.12</junit.version>
         <mockito.version>2.23.4</mockito.version>
         <jjwt.version>0.9.0</jjwt.version>
         <postgresql.version>42.2.6</postgresql.version>
         <h2.version>1.4.199</h2.version>
-        <full-artifact-name>target/looyas-0.0.1-SNAPSHOT.jar</full-artifact-name>
+
     </properties>
 
     <dependencies>
-	   
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -92,75 +89,59 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>com.heroku.sdk</groupId>
-                <artifactId>heroku-maven-plugin</artifactId>
-                <version>2.0.13</version>
-                <configuration>
-                    <appName>starterkitbackend</appName>
-                    <jdkVersion>1.8</jdkVersion>
-                    <processTypes>
-                        <web>java -Dserver.port=$PORT $JAVA_OPTS -jar  target/looyas-0.0.1-SNAPSHOT.jar </web>
-                    </processTypes>
-                </configuration>
+            <groupId>com.heroku.sdk</groupId>
+            <artifactId>heroku-maven-plugin</artifactId>
+            <version>2.0.13</version>
+            <configuration>
+                <appName>starterkitbackend</appName>
+                <jdkVersion>1.8</jdkVersion>
+                <processTypes>
+                    <web>java -Dserver.port=$PORT $JAVA_OPTS -jar  target/looyas-0.0.1-SNAPSHOT.jar </web>
+                </processTypes>
+            </configuration>
 
 
-            </plugin>
-           <!-- <plugin>
-                <groupId>com.heroku.sdk</groupId>
-                <artifactId>heroku-maven-plugin</artifactId>
-                <version>2.0.3</version>
-                <configuration>
-                    <appName>looyas</appName>
-                    <includeTarget>false</includeTarget>
-                    <includes>
-                        <include>target/looyas-0.0.1-SNAPSHOT.jar</include>
-                    </includes>
-                    <jdkVersion>${java.version}</jdkVersion>
-                    <processTypes>
-                        <web>java -jar target/looyas-0.0.1-SNAPSHOT.jar</web>
-                    </processTypes>git
-                </configuration>
-            </plugin> -->
+        </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-                 <plugin>
-		<groupId>org.jacoco</groupId>
-		<artifactId>jacoco-maven-plugin</artifactId>
-		<version>0.8.2</version>
-		<executions>
-			<execution>
-				<goals>
-					<goal>prepare-agent</goal>
-				</goals>
-			</execution>
-			<execution>
-				<id>jacoco-report</id>
-				<phase>test</phase>
-				<goals>
-					<goal>report</goal>
-				</goals>
-				<!-- default target/jscoco/site/* -->
-				<configuration>
-					<outputDirectory>target/jacoco-report</outputDirectory>
-				</configuration>
-			</execution>
-		</executions>
-		</plugin>	
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <!-- default target/jscoco/site/* -->
+                        <configuration>
+                            <outputDirectory>target/jacoco-report</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
-<distributionManagement>
-<repository>
-<id>looyas-project-repo-rel</id>
-<name>looyas-project-repo-rel</name>
-<url>http://192.168.10.193:8091/repository/looyas-project-repo-rel/</url>
-</repository>
+    <distributionManagement>
+        <repository>
+            <id>looyas-project-repo-rel</id>
+            <name>looyas-project-repo-rel</name>
+            <url>http://192.168.10.193:8091/repository/looyas-project-repo-rel/</url>
+        </repository>
 
-<snapshotRepository>
-<id>looyas-project-repo-snap</id>
-<name>looyas-project-repo-snap</name>
-<url>http://192.168.10.193:8091/repository/looyas-project-repo-snap/</url>
-</snapshotRepository> 
-	</distributionManagement>
+        <snapshotRepository>
+            <id>looyas-project-repo-snap</id>
+            <name>looyas-project-repo-snap</name>
+            <url>http://192.168.10.193:8091/repository/looyas-project-repo-snap/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
