@@ -17,7 +17,7 @@ jobs:
       - run:
           name: Copy deployment artifacts to workspace
           command: |
-            cp target/looyas-0.0.1-SNAPSHOT.jar /tmp/standalone-app.jar
+            cp target/*.jar /tmp/standalone-app.jar
       - store_test_results:
                 path: target/surefire-reports
       - store_artifacts:
