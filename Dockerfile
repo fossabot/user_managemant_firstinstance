@@ -8,14 +8,12 @@ RUN mvn -B dependency:resolve dependency:resolve-plugins
 #Copy source code
 COPY src /build/src
 # Build application
-RUN mvn package
-
+RUN mvn clean package
 
 FROM maven:3.6.1-jdk-8 as runtime
 #Set app home folder
 ENV APP_HOME /app
 #Possibility to set JVM options (https://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html)
-ENV JAVA_OPTS=""
 #Create base app folder
 RUN mkdir $APP_HOME
 #Create folder to save configuration files
