@@ -92,7 +92,7 @@ jobs:
             heroku plugins:install heroku-repo
             heroku repo:purge_cache -a $HEROKU_APP_NAME
             echo $HEROKU_API_KEY | docker login --username=$HEROKU_LOGIN --password-stdin registry.heroku.com
-            docker build -t registry.heroku.com/$HEROKU_APP_NAME/web
+
             heroku container:push web --app $HEROKU_APP_NAME
             heroku container:release web -a $HEROKU_APP_NAME
 
