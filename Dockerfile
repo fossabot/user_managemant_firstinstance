@@ -15,7 +15,7 @@ FROM openjdk:8-jdk-alpine as runtime
 #Set app home folder
 ENV APP_HOME /app
 ENV MAVEN_OPTS "-Xmx500m"
-ENV JAVA_OPTS "-Xmx500m"
+ENV JAVA_OPTS "-XX:+UseCGroupMemoryLimitForHeap"
 #Possibility to set JVM options (https://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html)
 #Create base app folder
 RUN mkdir $APP_HOME
