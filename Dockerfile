@@ -3,7 +3,8 @@ FROM maven:3.6-ibmjava-8-alpine as builder
 RUN mkdir -p /build
 WORKDIR /build
 COPY pom.xml /build
-ENV MAVEN_OPTS "-Xmx1024m"
+ENV MAVEN_OPTS "-Xmx500m"
+ENV JAVA_OPTS "-Xmx500m"
 #Download all required dependencies into one layer
 RUN mvn -B dependency:resolve dependency:resolve-plugins
 #Copy source code
