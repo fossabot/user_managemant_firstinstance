@@ -15,7 +15,7 @@ FROM openjdk:8-jdk-alpine as runtime
 #Set app home folder
 ENV APP_HOME /app
 ENV MAVEN_OPTS "-Xmx500m"
-ENV JAVA_OPTS "-XX:+UseCGroupMemoryLimitForHeap"
+ENV JAVA_OPTS "-Xms256m -Xmx450m -XX:+UseCGroupMemoryLimitForHeap  -XX:MinHeapFreeRatio=20 -XX:NativeMemoryTracking=detail -XX:+UnlockDiagnosticVMOptions -XX:+PrintNMTStatistics -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:+HeapDumpOnOutOfMemoryError -XX:CICompilerCount=2 -XX:+UseSerialGC  -Xss512k -XX:MaxRAM=350m -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -XX:ParallelGCThreads=20"
 #Possibility to set JVM options (https://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html)
 #Create base app folder
 RUN mkdir $APP_HOME
