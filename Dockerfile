@@ -24,7 +24,7 @@ RUN mkdir $APP_HOME/config
 RUN mkdir $APP_HOME/log
 VOLUME $APP_HOME/log
 VOLUME $APP_HOME/config
-WORKDIR $APP_HOME
+
 #Copy executable jar file from the builder image
 COPY  /target/*.jar app.jar
 ENTRYPOINT [ "java -Dserver.port=$PORT $JAVA_OPTS -jar app.jar" ]
