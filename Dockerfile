@@ -1,7 +1,7 @@
 FROM maven:3.6-ibmjava-8-alpine
 # create app folder for sources
 ENV APP_HOME /app
-ENV MAVEN_OPTS "-Xmx300m"
+
 ENV JAVA_OPTS "-Xmx300m -XX:+UseCGroupMemoryLimitForHeap"
 RUN mkdir -p /build
 WORKDIR /build
