@@ -1,8 +1,8 @@
-FROM maven:3.6-ibmjava-8-alpine
+FROM openjdk:8-jdk-alpine as builder
 # create app folder for sources
 ENV APP_HOME /app
 
-ENV JAVA_OPTS "-Xmx300m -XX:+UseCGroupMemoryLimitForHeap"
+
 RUN mkdir -p /build
 WORKDIR /build
 COPY pom.xml /build
@@ -13,8 +13,10 @@ RUN mvn -B dependency:resolve dependency:resolve-plugins
 COPY src /build/src
 # Build application
 RUN mvn clean package
-#Set app home folder
 
+FROM openjdk:8-jdk-alpine as runtime
+#Set app home folder
+ENV APP_HOME /app
 #Possibility to set JVM options (https://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html)
 #Create base app folder
 RUN mkdir $APP_HOME
@@ -24,9 +26,10 @@ RUN mkdir $APP_HOME/config
 RUN mkdir $APP_HOME/log
 VOLUME $APP_HOME/log
 VOLUME $APP_HOME/config
-
+WORKDIR $APP_HOME
 #Copy executable jar file from the builder image
-COPY  /target/*.jar app.jar
+COPY --from=builder /build/target/*.jar app.jar
+ENV JAVA_OPTS "-Xms100m -Xmx300m -XX:+UseCGroupMemoryLimitForHeap"
 ENTRYPOINT [ "java -Dserver.port=$PORT $JAVA_OPTS -jar app.jar" ]
 #Second option using shell form:
 
