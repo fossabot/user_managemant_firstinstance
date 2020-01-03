@@ -1,8 +1,8 @@
-FROM openjdk:8-jdk-alpine as builder
+FROM maven:3.6-ibmjava-8-alpine as builder
 # create app folder for sources
 ENV APP_HOME /app
 
-
+ENV JAVA_OPTS "-Xmx300m -XX:+UseCGroupMemoryLimitForHeap"
 RUN mkdir -p /build
 WORKDIR /build
 COPY pom.xml /build
@@ -29,7 +29,7 @@ VOLUME $APP_HOME/config
 WORKDIR $APP_HOME
 #Copy executable jar file from the builder image
 COPY --from=builder /build/target/*.jar app.jar
-ENV JAVA_OPTS "-Xms100m -Xmx300m -XX:+UseCGroupMemoryLimitForHeap"
+ENV JAVA_OPTS "-Xmx300m -XX:+UseCGroupMemoryLimitForHeap"
 ENTRYPOINT [ "java -Dserver.port=$PORT $JAVA_OPTS -jar app.jar" ]
 #Second option using shell form:
 
