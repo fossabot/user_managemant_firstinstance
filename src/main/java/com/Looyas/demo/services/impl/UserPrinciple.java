@@ -1,7 +1,7 @@
-package com.looyas.demo.services.impl;
+package com.Looyas.demo.services.impl;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.looyas.demo.models.User;
+import com.Looyas.demo.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

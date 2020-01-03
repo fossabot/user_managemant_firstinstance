@@ -1,4 +1,4 @@
-package com.looyas.demo.security.jwt;
+package com.Looyas.demo.security.jwt;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

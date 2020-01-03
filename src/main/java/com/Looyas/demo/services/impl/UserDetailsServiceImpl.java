@@ -1,7 +1,7 @@
-package com.looyas.demo.services.impl;
+package com.Looyas.demo.services.impl;
 
-import com.looyas.demo.models.User;
-import com.looyas.demo.repositories.UserRepository;
+import com.Looyas.demo.models.User;
+import com.Looyas.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

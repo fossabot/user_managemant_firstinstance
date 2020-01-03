@@ -1,26 +1,24 @@
-package com.looyas.demo.unitTest.UserTest;
+package com.Looyas.demo.unitTest.UserTest;
 
-import com.looyas.demo.controllers.UserController;
-import com.looyas.demo.models.User;
-import com.looyas.demo.services.UserService;
+import com.Looyas.demo.constants.Paths;
+import com.Looyas.demo.controllers.UserController;
+import com.Looyas.demo.models.User;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.looyas.demo.constants.Paths.GETUSER;
-import static com.looyas.demo.constants.Paths.GETUSERBYID;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
@@ -50,7 +48,7 @@ public class UserControllerTest {
         User user = new User("gjlh", "opjù", "lkjmkj", "ioujiou", "uihuihoklj");
         users.add(user);
         when(userController.getAllUsers()).thenReturn(users);
-        mvc.perform(get(GETUSER))
+        mvc.perform(MockMvcRequestBuilders.get(Paths.GETUSER))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$", hasSize(1)));
@@ -64,7 +62,7 @@ public class UserControllerTest {
         User user = new User("ajkhuimert1245", "gjlh", "opjù", "lkjmkj", "ioujiou", "uihuihoklj");
 
         when(userController.getUserByID("ajkhuimert1245")).thenReturn(java.util.Optional.of(user));
-        mvc.perform(get(GETUSERBYID + "/" + "ajkhuimert1245"))
+        mvc.perform(get(Paths.GETUSERBYID + "/" + "ajkhuimert1245"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.userId", is("ajkhuimert1245")));

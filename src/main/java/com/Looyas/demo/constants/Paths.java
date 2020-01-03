@@ -1,4 +1,4 @@
-package com.looyas.demo.constants;
+package com.Looyas.demo.constants;
 
 public class Paths {
     public static final String GETUSER = "http://192.168.10.193:8008/user/getUsers";

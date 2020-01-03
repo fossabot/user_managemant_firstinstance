@@ -1,8 +1,8 @@
-package com.looyas.demo.controllers;
+package com.Looyas.demo.controllers;
 
-import com.looyas.demo.exceptions.ResourceNotFoundException;
-import com.looyas.demo.models.User;
-import com.looyas.demo.services.UserService;
+import com.Looyas.demo.exceptions.ResourceNotFoundException;
+import com.Looyas.demo.models.User;
+import com.Looyas.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;

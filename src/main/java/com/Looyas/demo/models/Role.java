@@ -1,4 +1,4 @@
-package com.looyas.demo.models;
+package com.Looyas.demo.models;
 
 import org.hibernate.annotations.NaturalId;
 
@@ -38,5 +38,11 @@ public class Role {
 
     public void setName(RoleName name) {
         this.name = name;
+    }
+
+    public void addRole() {
+
+
+
     }
 }

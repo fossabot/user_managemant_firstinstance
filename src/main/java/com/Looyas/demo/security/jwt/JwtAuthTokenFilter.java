@@ -1,6 +1,6 @@
-package com.looyas.demo.security.jwt;
+package com.Looyas.demo.security.jwt;
 
-import com.looyas.demo.services.impl.UserDetailsServiceImpl;
+import com.Looyas.demo.services.impl.UserDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -21,16 +21,21 @@
         <junit.version>4.12</junit.version>
         <mockito.version>2.23.4</mockito.version>
         <jjwt.version>0.9.0</jjwt.version>
-        <postgresql.version>42.2.6</postgresql.version>
+        <
+postgresql.version>42.2.6</postgresql.version>
         <h2.version>1.4.199</h2.version>
         <full-artifact-name>target/looyas-0.0.1-SNAPSHOT.jar</full-artifact-name>
     </properties>
 
     <dependencies>
-
+	   
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
         </dependency>
         <!-- jpa, crud repository -->
         <dependency>
@@ -60,6 +65,13 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -140,7 +152,7 @@
 				</configuration>
 			</execution>
 		</executions>
-		</plugin>
+		</plugin>	
         </plugins>
     </build>
 <distributionManagement>
@@ -154,6 +166,6 @@
 <id>looyas-project-repo-snap</id>
 <name>looyas-project-repo-snap</name>
 <url>http://192.168.10.193:8091/repository/looyas-project-repo-snap/</url>
-</snapshotRepository>
+</snapshotRepository> 
 	</distributionManagement>
 </project>

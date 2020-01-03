@@ -1,8 +1,8 @@
-package com.looyas.demo.services.impl;
+package com.Looyas.demo.services.impl;
 
-import com.looyas.demo.models.User;
-import com.looyas.demo.repositories.UserRepository;
-import com.looyas.demo.services.UserService;
+import com.Looyas.demo.models.User;
+import com.Looyas.demo.repositories.UserRepository;
+import com.Looyas.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

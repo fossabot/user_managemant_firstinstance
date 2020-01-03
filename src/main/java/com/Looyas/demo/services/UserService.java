@@ -1,6 +1,6 @@
-package com.looyas.demo.services;
+package com.Looyas.demo.services;
 
-import com.looyas.demo.models.User;
+import com.Looyas.demo.models.User;
 
 import java.util.Optional;
 

@@ -1,6 +1,6 @@
-package com.looyas.demo.repositories;
+package com.Looyas.demo.repositories;
 
-import com.looyas.demo.models.User;
+import com.Looyas.demo.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

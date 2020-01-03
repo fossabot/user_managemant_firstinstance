@@ -1,7 +1,7 @@
-package com.looyas.demo.repositories;
+package com.Looyas.demo.repositories;
 
-import com.looyas.demo.models.Role;
-import com.looyas.demo.models.RoleName;
+import com.Looyas.demo.models.RoleName;
+import com.Looyas.demo.models.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

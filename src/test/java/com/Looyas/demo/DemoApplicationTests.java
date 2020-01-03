@@ -1,4 +1,4 @@
-package com.looyas.demo;
+package com.Looyas.demo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

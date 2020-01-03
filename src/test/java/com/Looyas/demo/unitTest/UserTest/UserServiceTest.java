@@ -1,8 +1,8 @@
-package com.looyas.demo.unitTest.UserTest;
+package com.Looyas.demo.unitTest.UserTest;
 
-import com.looyas.demo.models.User;
-import com.looyas.demo.repositories.UserRepository;
-import com.looyas.demo.services.UserService;
+import com.Looyas.demo.models.User;
+import com.Looyas.demo.services.UserService;
+import com.Looyas.demo.repositories.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

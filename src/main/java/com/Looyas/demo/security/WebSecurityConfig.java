@@ -1,8 +1,8 @@
-package com.looyas.demo.security;
+package com.Looyas.demo.security;
 
-import com.looyas.demo.security.jwt.JwtAuthEntryPoint;
-import com.looyas.demo.security.jwt.JwtAuthTokenFilter;
-import com.looyas.demo.services.impl.UserDetailsServiceImpl;
+import com.Looyas.demo.security.jwt.JwtAuthEntryPoint;
+import com.Looyas.demo.security.jwt.JwtAuthTokenFilter;
+import com.Looyas.demo.services.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        Specifically, the "/" and "/auth" paths are configured to not require any authentication. All other paths must be authenticated.
         http.cors().and().csrf().disable().
                 authorizeRequests()
-                .antMatchers( "/","/auth/**").permitAll()
+                .antMatchers( "/","/auth/**","/roles/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()

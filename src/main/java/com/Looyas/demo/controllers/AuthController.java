@@ -1,14 +1,14 @@
-package com.looyas.demo.controllers;
+package com.Looyas.demo.controllers;
 
-import com.looyas.demo.messages.requests.LoginForm;
-import com.looyas.demo.messages.requests.SignUpForm;
-import com.looyas.demo.messages.responses.JwtResponse;
-import com.looyas.demo.models.Role;
-import com.looyas.demo.models.RoleName;
-import com.looyas.demo.models.User;
-import com.looyas.demo.repositories.RoleRepository;
-import com.looyas.demo.repositories.UserRepository;
-import com.looyas.demo.security.jwt.JwtProvider;
+import com.Looyas.demo.messages.requests.LoginForm;
+import com.Looyas.demo.messages.requests.SignUpForm;
+import com.Looyas.demo.messages.responses.JwtResponse;
+import com.Looyas.demo.models.RoleName;
+import com.Looyas.demo.models.User;
+import com.Looyas.demo.security.jwt.JwtProvider;
+import com.Looyas.demo.models.Role;
+import com.Looyas.demo.repositories.RoleRepository;
+import com.Looyas.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

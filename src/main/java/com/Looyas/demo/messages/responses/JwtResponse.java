@@ -1,4 +1,4 @@
-package com.looyas.demo.messages.responses;
+package com.Looyas.demo.messages.responses;
 
 //JwtResponse.java is returned by SpringBoot server after successful authentication, it contains 2 parts:
 //JWT Token
