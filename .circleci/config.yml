@@ -108,7 +108,7 @@ jobs:
   push image to DockerHub:
     machine: true
     working_directory: ~/user_managemant_firstinstance
-      steps:
+    steps:
         - attach_workspace:
             at: .
         - run:
