@@ -62,7 +62,7 @@ jobs:
 
   Build docker image:
     machine: true
-    stepbash
+   
       - checkout
       - restore_cache:
           key: user_managemant_firstinstance-{{ checksum "docker-compose.yml" }}
