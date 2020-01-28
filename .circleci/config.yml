@@ -60,7 +60,7 @@ jobs:
 
 
 
-  Build docker image & Push to Docker-hub:
+  Build docker image \& Push to Docker-hub:
     machine: true
     steps:
       - checkout
