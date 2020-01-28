@@ -68,13 +68,13 @@ jobs:
           key: user_managemant_firstinstance-{{ checksum "docker-compose.yml" }}
       - run: |
           curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-          add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu \$(lsb_release -cs) \stable"
+          add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
           apt-get update
           apt-get install docker-ce
           docker-compose build
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
           docker tag $CONTAINER_BACK_NAME:$CONTAINER_TAG $CONTAINER_BACK_NAME:$CONTAINER_TAG
-          docker push $DOCKER_HUB_USER/$CONTAINER_BACK_NAME:$CONTAINER_TAG
+          docker push $CONTAINER_BACK_NAME:$CONTAINER_TAG
       - run:
           name: Check built image availability
           command: docker ps -a
