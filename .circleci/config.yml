@@ -70,7 +70,7 @@ jobs:
           docker-compose build
       - run:
           name: Check built image availability
-          command: docker images "looyas/starter_kit*"
+          command: docker images ls
       - persist_to_workspace:
           root: .
           paths: .
