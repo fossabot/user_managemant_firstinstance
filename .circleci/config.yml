@@ -70,7 +70,7 @@ jobs:
           docker-compose build
       - run:
           name: Check built image availability
-          command: docker images ls
+          command: docker ps -a
       - persist_to_workspace:
           root: .
           paths: .
