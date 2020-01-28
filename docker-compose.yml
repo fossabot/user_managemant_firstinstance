@@ -1,0 +1,26 @@
+version: '3.6'
+services:
+    back:
+      hostname: back
+      container_name: starter_kit_back
+      image: starter_kit_back
+      build:
+        context: ./
+        dockerfile: Dockerfile
+      ports: 
+          - 8898:8898
+      networks:
+          - my_network_two
+      volumes:
+        - ./looyasback_db:/var/lib/postgresql/data
+      external_links:
+        - looyasback_db
+      
+volumes:
+    looyasback_db: {}
+
+networks:
+  my_network_two:
+    external: true
+
+
