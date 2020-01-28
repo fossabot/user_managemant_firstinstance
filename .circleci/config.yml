@@ -13,18 +13,21 @@ jobs:
           paths:
             - ~/.m2
           key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
-      - run: mvn clean package -Dunit-tests.skip=true
+      - run: mvn clean package -DskipTests=true
       - run:
           name: Copy deployment artifacts to workspace
           command: |
             cp target/*.jar /tmp/standalone-app.jar
       - store_test_results:
-                path: target/surefire-reports
+          path: target/surefire-reports
       - store_artifacts:
-                path: /tmp/standalone-app.jar
+          path: /tmp/standalone-app.jar
       - persist_to_workspace:
           root: /home/circleci/user_managemant_firstinstance
           paths: .
+
+
+
   Unit-Test:
     working_directory: ~/user_managemant_firstinstance
     docker:
@@ -33,14 +36,16 @@ jobs:
       - checkout
       - run: mvn test
       - store_test_results:
-          path: target/surefire-reports
+          path: target/surefire-
+
+
   integration test:
     working_directory: ~/user_managemant_firstinstance
     docker:
       - image: circleci/openjdk:8-jdk-stretch
     steps:
       - checkout
-      - run: mvn  verify -Dunit-tests.skip=true
+      - run: mvn  verify -DskipTests=true
       - store_test_results:
           path: target/surefire-reports
   code review:
@@ -52,20 +57,23 @@ jobs:
       - run:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
+
+
+
   Build docker image:
     machine: true
     steps:
       - attach_workspace:
           at: .
       - run: |
-          TAG=0.1.$CIRCLE_BUILD_NUM
-          docker build -t looyas/starter_kit:$TAG .
-          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-          docker push looyas/starter_kit:$TAG
-
+          Docker-compose build
       - run:
           name: Check built image availability
-          command: docker images "looyas/starter_kit:$TAG*"
+          command: docker images "looyas/starter_kit*"
+      - persist_to_workspace:
+          root: .
+          paths: .
+
 
   deploy image to heroku:
     machine:
@@ -76,10 +84,10 @@ jobs:
       - run:
           name: Deploy to Heroku
           command: |
-             echo $HEROKU_API_KEY | docker login --username=$HEROKU_LOGIN --password-stdin registry.heroku.com
-             docker pull looyas/starter_kit:latest
-             docker tag looyas/starter_kit:latest  registry.heroku.com/$HEROKU_APP_NAME/web
-             docker push registry.heroku.com/$HEROKU_APP_NAME/web
+            echo $HEROKU_API_KEY | docker login --username=$HEROKU_LOGIN --password-stdin registry.heroku.com
+            docker pull looyas/starter_kit:latest
+            docker tag looyas/starter_kit:latest  registry.heroku.com/$HEROKU_APP_NAME/web
+            docker push registry.heroku.com/$HEROKU_APP_NAME/web
       - run:
           name: "Install Heroku CLI, if necessary"
           command: |
@@ -92,28 +100,23 @@ jobs:
             heroku plugins:install heroku-repo
             heroku repo:purge_cache -a $HEROKU_APP_NAME
             echo $HEROKU_API_KEY | docker login --username=$HEROKU_LOGIN --password-stdin registry.heroku.com
-
             heroku container:push web --app $HEROKU_APP_NAME
             heroku container:release web -a $HEROKU_APP_NAME
 
+
   push image to DockerHub:
-    working_directory: ~/user_managemant_firstinstance
-    docker:
-      - image: circleci/openjdk:8-jdk-browsers
-    steps:
-      - checkout
-      - restore_cache:
-          key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
-      - run: mvn dependency:go-offline
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: user_managemant_firstinstance-{{ checksum "pom.xml" }}
-      - run:
-          name: deploy test
-          command: |
-              mvn clean package
-              HEROKU_API_KEY="53ba8613-0fa8-404f-9dca-84d6831d4cca" mvn clean heroku:deploy
+    machine: true
+      working_directory: ~/user_managemant_firstinstance
+      steps:
+        - attach_workspace:
+            at: .
+        - run:
+            name: deploy test
+            command: |
+             echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+             docker tag $CONTAINER_BACK_NAME:$CONTAINER_TAG $DOCKER_HUB_USER/$CONTAINER_BACK_NAME:$CONTAINER_TAG
+             docker push $DOCKER_HUB_USER/$CONTAINER_BACK_NAME:$CONTAINER_TAG
+
 workflows:
   version: 2.1
   build-test-and-deploy:
@@ -140,8 +143,3 @@ workflows:
       - push image to DockerHub:
           requires:
             - Build docker image
-
-
-
-
-
