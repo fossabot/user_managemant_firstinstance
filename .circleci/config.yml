@@ -70,7 +70,7 @@ jobs:
           
           docker-compose build
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-          docker tag $CONTAINER_BACK_NAME:$CONTAINER_TAG $CONTAINER_BACK_NAME:$CONTAINER_TAG
+          docker tag $CONTAINER_BACK_NAME:$CONTAINER_TAG $DOCKER_USER/$CONTAINER_BACK_NAME:$CONTAINER_TAG
           docker push $CONTAINER_BACK_NAME:$CONTAINER_TAG
       - run:
           name: Check built image availability
