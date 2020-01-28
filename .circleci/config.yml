@@ -68,15 +68,13 @@ jobs:
           key: user_managemant_firstinstance-{{ checksum "docker-compose.yml" }}
       - run: |
           docker-compose build
+          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+          docker tag $CONTAINER_BACK_NAME:$CONTAINER_TAG $DOCKER_HUB_USER/$CONTAINER_BACK_NAME:$CONTAINER_TAG
+          docker push $DOCKER_HUB_USER/$CONTAINER_BACK_NAME:$CONTAINER_TAG
       - run:
           name: Check built image availability
           command: docker ps -a
-      - run:
-          name: push to docker Hub 
-          command: |
-             echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-             docker tag $CONTAINER_BACK_NAME:$CONTAINER_TAG $DOCKER_HUB_USER/$CONTAINER_BACK_NAME:$CONTAINER_TAG
-             docker push $DOCKER_HUB_USER/$CONTAINER_BACK_NAME:$CONTAINER_TAG
+      
       - persist_to_workspace:
           root: .
           paths: .
