@@ -110,18 +110,18 @@ jobs:
             heroku container:release web -a $HEROKU_APP_NAME
 
 
-  push image to DockerHub:
-    machine: true
-    working_directory: ~/user_managemant_firstinstance
-    steps:
-        - attach_workspace:
-            at: .
-        - run:
-            name: deploy test
-            command: |
-             echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-             docker tag $CONTAINER_BACK_NAME:$CONTAINER_TAG $DOCKER_HUB_USER/$CONTAINER_BACK_NAME:$CONTAINER_TAG
-             docker push $DOCKER_HUB_USER/$CONTAINER_BACK_NAME:$CONTAINER_TAG
+#  push image to DockerHub:
+ #   machine: true
+ #   working_directory: ~/user_managemant_firstinstance
+  #  steps:
+       # - attach_workspace:
+      ##      at: .
+       # - run:
+          #  name: deploy test
+          #  command: |
+           #  echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+           #  docker tag $CONTAINER_BACK_NAME:$CONTAINER_TAG $DOCKER_HUB_USER/$CONTAINER_BACK_NAME:$CONTAINER_TAG
+           #  docker push $DOCKER_HUB_USER/$CONTAINER_BACK_NAME:$CONTAINER_TAG
 
 workflows:
   version: 2.1
@@ -146,6 +146,6 @@ workflows:
       - deploy image to heroku:
           requires:
             - Build docker image
-      - push image to DockerHub:
-          requires:
-            - Build docker image
+    #  - push image to DockerHub:
+     #     requires:
+          #  - Build docker image
