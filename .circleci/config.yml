@@ -60,7 +60,7 @@ jobs:
 
 
 
-  Build docker image:
+  Build docker image & Push to Docker-hub:
     machine: true
     steps:
       - checkout
@@ -138,14 +138,14 @@ workflows:
           context: SonarCloud
           requires:
             - build
-      - Build docker image:
+      - Build docker image & Push to Docker-hub:
           requires:
             - code review
             - integration test
             - Unit-Test
       - deploy image to heroku:
           requires:
-            - Build docker image
+            - Build docker image & Push to Docker-hub
     #  - push image to DockerHub:
      #     requires:
           #  - Build docker image
