@@ -64,8 +64,8 @@ jobs:
     machine: true
     steps:
       - checkout
-      - attach_workspace:
-          at: .
+      - restore_cache:
+          key: user_managemant_firstinstance-{{ checksum "docker-compose.yml" }}
       - run: |
           docker-compose build
       - run:
